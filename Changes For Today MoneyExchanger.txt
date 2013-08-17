@@ -1,0 +1,21 @@
+Remove unwanted buttons
+Average cost and stock should be read Only
+
+Include rate and reverse rate logic
+
+reffresh button
+onblur la all
+malaysia myr -
+
+
+status center
+
+save pop-up
+
+could not be processed
+
+946
+
+
+
+

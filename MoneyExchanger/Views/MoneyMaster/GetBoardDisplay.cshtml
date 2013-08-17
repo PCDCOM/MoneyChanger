@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Rate Display";
+}
+<html>
+<head>
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+</head>
+<body>
+    <h2>
+        Rate Display</h2>
+    <script type="text/javascript" src="../../Scripts/jquery-1.7.1.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "MoneyMaster/GetBoardDisplayData",
+                type: "get",
+                data: { userName: "emma" },
+                success: function (response, textStatus, jqXHR) {
+                    $.each(response, function (key,value) {
+                        console.log(key + ": " + value.Code);
+                    });
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("error");
+                }, complete: function () {
+
+                }
+            });
+
+
+        });
+    </script>
+</body>
+</html>

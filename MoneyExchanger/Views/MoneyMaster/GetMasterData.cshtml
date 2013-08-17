@@ -1,0 +1,74 @@
+﻿
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+       
+        <script type="text/javascript" src="../../Scripts/jquery-1.7.1.js"></script>
+      
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#txtlocalAmt').blur(function () {
+                //alert("a");
+
+                $.ajax({
+                    url: "GetExchangeDate",
+                    type: "get",
+                    data: { userName: "emma" },
+                    success: function (response, textStatus, jqXHR) {
+                        // $('#txtExchngRate').val(response.exchangeRate);
+                        alert(response);
+                        debugger;
+                        //$('#txtForeignAmount').val($('#txtlocalAmt').val() * parseFloat(response.exchangeRate));
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("error");
+                    }, complete: function () {
+
+                    }
+                });
+            });
+        });
+    </script>
+
+    </head>
+
+
+@model MoneyExchanger.Models.MoneyExchangeAttribute
+<body>
+<h2>@ViewBag.Title</h2>
+
+@Html.Label("lblVouchID", "Voucher : ")
+@Html.Label("txtVouchID", Model.VoucherID)<br />
+
+@Html.Label("lblTdyDate", "Date : ")
+@Html.Label("txtTdyDate", Model.CurrentDate.ToString())<br />
+
+@Html.Label("lblCustCode", "Customer Code : ")
+@Html.DropDownList("custCode", Model.CustomerList)<br />
+
+@Html.Label("lblTrasMode", "Transaction Mode")
+@Html.RadioButton("tranMode", "Selling")@Html.Label("lblSelling", "Selling")
+@Html.RadioButton("tranMode", "Buying")@Html.Label("lblBuying", "Buying")<br />
+
+
+@Html.Label("lblCurrency", "Currency")
+@Html.DropDownList("currCode", Model.CurrencyList)<br />
+
+@Html.Label("lblLocalAmt", "Local Amount in SGD")
+@Html.TextBox("txtlocalAmt",0)<br />
+
+@Html.Label("lblExchngRate", "Exchange Rate")
+@Html.TextBox("txtExchngRate", 0)<br />
+
+@Html.Label("lblForeignAmount", "Foreign Currency Amount")
+@Html.TextBox("txtForeignAmount", 0)<br />
+</body>
+
+
+
+
+</html>

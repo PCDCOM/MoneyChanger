@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ForexMoney" Class="LinqMasterDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DELL-PC;Initial Catalog=ForexMoney;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ForexMoneyConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TblCurrency" Member="TblCurrencies">
+    <Type Name="TblCurrency">
+      <Column Name="CurrencyCode" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CurrencyName" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Major" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Minor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LocalCurrency" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Varience" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BuyRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SellRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Units" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Stock" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="AvgCost" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="LastPdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastSDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TTCurrency" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="TTCustomerCode" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="TTCustomerUpdate" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="OPERATOR" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetMasterCurrencyCodes" Method="GetMasterCurrencyCodes">
+    <ElementType Name="GetMasterCurrencyCodesResult">
+      <Column Name="Code" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetLocationCurrency" Method="GetLocationCurrency">
+    <Parameter Name="LocationCode" Parameter="locationCode" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CurrencyCode" Parameter="currencyCode" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="GetLocationCurrencyResult">
+      <Column Name="LocationCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyCode" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Varience" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Stock" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BuyRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SellRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Units" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="AvgCost" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SaveTransaction" Method="SaveTransaction">
+    <Parameter Name="CreatedBy" Parameter="createdBy" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="CurrencyCode" Parameter="currencyCode" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TranType" Parameter="tranType" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="Rate" Parameter="rate" Type="System.Decimal" DbType="Decimal(18,8)" />
+    <Parameter Name="FAmount" Parameter="fAmount" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="LAmount" Parameter="lAmount" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Avgcost" Parameter="avgcost" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="AvgStock" Parameter="avgStock" Type="System.Double" DbType="Float" />
+    <ElementType Name="SaveTransactionResult">
+      <Column Name="TranNo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TranDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DocType" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="RefNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PPNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Address1" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Address2" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Address3" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Address4" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Nationality" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CustName" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="CustCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OwnOutletYesNo" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="LocationCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TTRefNo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Deleted" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dob" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="company" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
