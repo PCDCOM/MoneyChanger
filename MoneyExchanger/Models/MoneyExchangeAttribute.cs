@@ -31,4 +31,11 @@ namespace MoneyExchanger.Models
         public string AvgCost { get; set; }
         
     }
+    public class UserMaster
+    {
+        public string UserId { get; set; }
+        public string Description { get; set; }
+        public string Password { get; set; }
+
+    }
 }

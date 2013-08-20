@@ -42,17 +42,24 @@ namespace MoneyExchanger.Controllers
         {
 
             LinqMasterDataContext a = new LinqMasterDataContext();
-            var abc = (from curr in a.TblCurrencies
+            var varCurr = (from curr in a.TblCurrencies
                        select new CurrencyCodes
                        {
                            Code = curr.CurrencyCode,
                            Description = curr.CurrencyName,
                            Varience = Convert.ToDecimal(curr.Varience)
                        }).ToList<CurrencyCodes>();
-
-            return Json(abc, JsonRequestBehavior.AllowGet);
+            var varUsers = (from usrs in a.TblUserMasters
+                            select new UserMaster
+                            {
+                                UserId = usrs.UserId,
+                                Description = usrs.Description,
+                                Password = usrs.Password
+                            }).ToList<UserMaster>(); 
+            return Json(new { varCurr, varUsers }, JsonRequestBehavior.AllowGet);
 
         }
+
         public ActionResult GetExactMasterData()
         {
 
@@ -67,10 +74,10 @@ namespace MoneyExchanger.Controllers
 
             return Json(convertionList, JsonRequestBehavior.AllowGet); ;
         }
-        public ActionResult SaveTransactions(string currCode, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock)
+        public ActionResult SaveTransactions(string currCode, string userId, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock)
         {
             LinqMasterDataContext mastContext = new LinqMasterDataContext();
-            var ret = mastContext.SaveTransaction("FE", currCode, transactionType, Convert.ToDecimal(Rate), Convert.ToDecimal(ForeignAmount), Convert.ToDecimal(LocalAmount), Convert.ToDecimal(AvgCost), Convert.ToDouble(AvgStock));
+            var ret = mastContext.SaveTransaction(userId, currCode, transactionType, Convert.ToDecimal(Rate), Convert.ToDecimal(ForeignAmount), Convert.ToDecimal(LocalAmount), Convert.ToDecimal(AvgCost), Convert.ToDouble(AvgStock));
             var compDetails = mastContext.tblCompanies.FirstOrDefault();
             var AdditionaValues = new { currCode = currCode, transactionType = transactionType, ForeignAmount = ForeignAmount, LocalAmount = LocalAmount, Rate = Rate };
             return Json(new { ret, compDetails, AdditionaValues }, JsonRequestBehavior.AllowGet);

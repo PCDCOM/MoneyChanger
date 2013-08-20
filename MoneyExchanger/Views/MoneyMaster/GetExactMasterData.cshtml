@@ -136,7 +136,7 @@
             <label for="selectError" class="control-label">Currency</label>
             <div class="controls ">
                  
-           <select id="combobox">
+           <select id="comboboxCurr">
    
   </select>
             </div>
@@ -177,7 +177,7 @@
               <input type="text" id="txtStock" placeholder="0.00" class="input-xlarge" disabled=true>
             </div>
           </div>
-		  
+		  <div id="divUsers"></div>
 		 </div> 
 		 <div class="pull-left clearfix">
 		 <div class="R clearfix Map hide" id="Map">
@@ -357,12 +357,19 @@
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR) {
 
-                    $.each(response, function () {
-                        $('#combobox').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Description'] + " (" + this['Code'] + ")"));
+                    $.each(response.varCurr, function () {
+                        $('#comboboxCurr').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Description'] + " (" + this['Code'] + ")"));
                     });
 
+                    $.each(response.varUsers, function () {
+                        $('#divUsers').append($("<input>").attr({
+                            type: 'radio', name: 'usrs', id: this['UserId']
+                        }).html(this['UserId']).after("<span style='padding-right:30px;'>" + this['UserId'] + "</span>"));
+                    });
 
-                },
+                    $("input:radio[name=usrs]:first").attr('checked', true);
+
+                   },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("error");
                 }, complete: function () {
@@ -505,7 +512,7 @@
         })(jQuery);
 
         $(function () {
-            $("#combobox").combobox({
+            $("#comboboxCurr").combobox({
                 select: function (event, ui) {
                     // alert("akka");
 
@@ -647,6 +654,9 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
+            selectedUser = $('input:radio:checked').next().text();
+
+            
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -656,7 +666,7 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
@@ -688,6 +698,7 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
+            selectedUser = $('input:radio:checked').next().text();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -697,7 +708,7 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
