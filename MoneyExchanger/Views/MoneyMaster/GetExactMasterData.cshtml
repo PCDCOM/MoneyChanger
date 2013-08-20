@@ -11,11 +11,11 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../../css/bootstrap.css" rel="stylesheet">
-    <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="../../css/toggle-switch.css" rel="stylesheet">
-	<link href="../../css/custom.css" rel="stylesheet">
-	 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link href=@Url.Content("~/css/bootstrap.css") rel="stylesheet"/>
+    <link href=@Url.Content("~/css/bootstrap-responsive.css") rel="stylesheet"/>
+	<link href=@Url.Content("~/css/toggle-switch.css") rel="stylesheet"/>
+	<link href=@Url.Content("~/css/custom.css") rel="stylesheet"/>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -25,34 +25,31 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
          <style>
-  .custom-combobox {
-    position: relative;
-    display: inline-block;
-  }
-  .custom-combobox-toggle {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin-left: -1px;
-    padding: 0;
-    /* support: IE7 */
-    *height: 1.7em;
-    *top: 0.1em;
-  }
-  .custom-combobox-input {
-    margin: 0;
-    padding: 0.3em;
-  }
-  </style>
-         <script type="text/javascript">
-           
-  </script>
+              .custom-combobox {
+                position: relative;
+                display: inline-block;
+              }
+              .custom-combobox-toggle {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin-left: -1px;
+                padding: 0;
+                /* support: IE7 */
+                *height: 1.7em;
+                *top: 0.1em;
+              }
+              .custom-combobox-input {
+                margin: 0;
+                padding: 0.3em;
+              }
+        </style>
 
 </head>
 <body>
@@ -68,7 +65,7 @@
           <a class="title" href="#">ALIFFAN AGENCY PTE LTD MC</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              DATE <a href="#" class="navbar-link">25/07/2020</a>
+              DATE <a href="#" id="aDate" class="navbar-link">25/07/2020</a>
             </p>
             
           </div><!--/.nav-collapse -->
@@ -87,9 +84,9 @@
         <button data-dismiss="alert" class="close" type="button">×</button>
         <strong>Well done!</strong> You successfully read this important alert message.
       </div>
-      <div class="alert alert-info">
+      <div class="alert alert-info" style="display:none">
         <button data-dismiss="alert" class="close" type="button">×</button>
-        <strong id="notificationMessage">Heads up!This alert needs your attention, but it's not super important.</strong> 
+        <strong>Heads up!This alert needs your attention, but it's not super important.</strong> 
       </div>
     </div>
 	
@@ -105,6 +102,7 @@
         <div class="pull-left MarR25">
 		  <div class="control-group">  
 		    <label for="selectError" class="control-label pull-left">Type</label>
+            
  <div>		  
 <label class="checkbox toggle well" onclick="">
 
@@ -195,8 +193,9 @@
 		 <div class="bottomVal" id="convertToCurrency">
 		 
 		 </div>
-		<img src="../../image/mC.png" class="featurette-image">
+		<img src=@Url.Content("~/image/mC.png") class="featurette-image" style="height:100px">
 		</div>
+            
 		 <div class="pull-left Right-side-Area" >
 		@* <div class="control-group">
             <label for="input01" class="control-label text-left">Avg Cost</label>
@@ -210,9 +209,13 @@
               <input type="text" id="txtStock" placeholder="0.00" class="input-xlarge">
             </div>
           </div>*@
+     
 		</div>
 </div>
-
+ <div class="" style="left: 835px;position: relative;width: 235px;top: -351px;">
+       
+        <strong id="notificationMessage" style="font-size:20px;color:green"></strong> 
+      </div>
         </fieldset>
 </form>
       </div>
@@ -223,6 +226,7 @@
 	<div class="plan clearfix navbar-inner MarT10 PadT10 ">
 	<button class="btn btn-primary" type="submit" id="btnSave">Save</button>
     <button class="btn btn-primary" type="submit" id="btnPrint">Save and Print</button>
+    @*<input type="button" value="Default" id="simplePrint" />*@
 	<button class="btn btn-warning" type="submit">Close</button>
 	<button class="btn btn-danger" type="submit" onclick="populateData();">Reset</button>
 	<button class="btn btn-success hide" type="submit" >Fix this Rate</button>
@@ -231,7 +235,7 @@
 	<button class="btn btn-redlight hide" type="submit">Stock Report</button>
 	</div>
 	</div>
-
+    <div id="toPrint"></div>
     <div class="modal fade" id="test_modal">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
@@ -240,7 +244,7 @@
   <div class="modal-body">
  <div class="modal-wrapper">
  <div class="modal-fields">
-	<div class="pull-left"> 
+	<div class="pull-left">   
 	MYR
 	</div>
 	<div class="pull-right"> 
@@ -283,21 +287,9 @@
    
     
   
-       <script src="../../Scripts/jquery-1.7.1.js"></script> 
-    <script src="../../Scripts/bootstrap-transition.js"></script>
-    <script src="../../Scripts/bootstrap-alert.js"></script>
-    <script src="../../Scripts/bootstrap-modal.js"></script>
-    <script src="../../Scripts/bootstrap-dropdown.js"></script>
-    <script src="../../Scripts/bootstrap-scrollspy.js"></script>
-    <script src="../../Scripts/bootstrap-tab.js"></script>
-    <script src="../../Scripts/bootstrap-tooltip.js"></script>
-    <script src="../../Scripts/bootstrap-popover.js"></script>
-    <script src="../../Scripts/bootstrap-button.js"></script>
-    <script src="../../Scripts/bootstrap-collapse.js"></script>
-    <script src="../../Scripts/bootstrap-carousel.js"></script>
-    <script src="../../Scripts/bootstrap-typeahead.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src=@Url.Content("~/Scripts/jquery-1.7.1.js")></script> 
+    <script src=@Url.Content("~/Scripts/jquery.printElement.js") type="text/javascript"></script> 
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     
  
    
@@ -305,17 +297,55 @@
         var isDefaultBuy = true;
         var currencyConvResponse = null;
         var selectedCurrency = "";
+        var selectedVarience = "";
+        var lowLimitVarience = "", highLimitVarience = "";
+        function printElem(options, obj) {
+            var strHtml = "<span>" + obj.compDetails.Description + "</span><br />";
+            strHtml += "<span>Authorised Moneychanger</span><br />";
+            strHtml += "<span>" + obj.compDetails.Address1 + "</span><br />";
+            strHtml += "<span>" + obj.compDetails.Address2 + "</span><br />";
+            strHtml += "<span>" + obj.compDetails.Address2 + "    </span>";
+            strHtml += "<span>" + obj.compDetails.Postalcode + "</span><br />";
+            strHtml += "<span>Tel: " + obj.compDetails.Phone + "</span><br />";
+            strHtml += "<span>LIC No: " + obj.compDetails.TaxRef + "</span><br />";
+            strHtml += "<span>Receipt Number:" + obj.ret[0].TranNo + "    </span>";
+            strHtml += "<span>" + $("#aDate").html() + "</span>";
+
+            strHtml += "<hr />";
+            strHtml += "<span>Cash Customer</span><br />";
+            strHtml += "<span>Cash Customer</span><br />";
+            strHtml += "<hr style='border-top:none;border-bottom:dotted' />";
+            strHtml += "<span>Curr: </span><span>" + obj.AdditionaValues.currCode + "</span><br />";
+            strHtml += "<table><tr>";
+            strHtml += "<th style='border:1px dotted black;padding:5px;' align='right' width='33%'>FC Amt</th>";
+            strHtml += "<th style='border:1px dotted black;padding:5px;' align='right' width='33%'>LC Amt</th>";
+            strHtml += "<th style='border:1px dotted black;padding:5px;' align='right' width='33%'>Rate</th></tr>";
+
+            strHtml += "<tr><td style='border:1px dotted black;padding:5px;' align='right'>" + obj.AdditionaValues.ForeignAmount + "</td>";
+            strHtml += "<td style='border:1px dotted black;padding:5px;' align='right'>" + obj.AdditionaValues.LocalAmount + "</td>";
+            strHtml += "<td style='border:1px dotted black;padding:5px;' align='right'>" + obj.AdditionaValues.Rate + "</td>";
+            strHtml += "</tr></table>";
+            strHtml += "<hr style='border-top:none;border-bottom:dotted' /><br />";
+            strHtml += "<span>Please Pay: </span><span>" + obj.AdditionaValues.Rate + "</span><br />";
+            strHtml += "<hr style='border-top:none;border-bottom:dotted' />";
+            strHtml += "<span>Pls. Count $ check notes before leaving the counter as we shall not entertain any complaints thereafter. Thank you.</span><br />";
+            strHtml += "<hr />";
+            $('#toPrint').html(strHtml);
+            $('#toPrint').printElement(options);
+
+
+        }
         $(document).ready(function () {
-              $("#test_modal").dialog({
-            autoOpen: false,
-           
-            hide: {
-            effect: "explode",
-            duration: 1000
-            }
-    });
-    
-           /* var j = jQuery.noConflict(true);
+            $("#test_modal").dialog({
+                autoOpen: false,
+
+                hide: {
+                    effect: "explode",
+                    duration: 1000
+                }
+            });
+
+            /* var j = jQuery.noConflict(true);
             j('#test_modal').dialog('open');
             // $.noConflict(false);*/
             //jq162 = jQuery.noConflict(true);
@@ -324,15 +354,11 @@
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR) {
-                    // $('#txtExchngRate').val(response.exchangeRate);
 
                     $.each(response, function () {
-                        $('#combobox').append($("<option></option>").val(this['Code']).html(this['Description'] + " (" + this['Code'] + ")"));
+                        $('#combobox').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Description'] + " (" + this['Code'] + ")"));
                     });
 
-                    //alert(response);
-
-                    //$('#txtForeignAmount').val($('#txtlocalAmt').val() * parseFloat(response.exchangeRate));
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -480,10 +506,11 @@
             $("#combobox").combobox({
                 select: function (event, ui) {
                     // alert("akka");
-                    // debugger;
-                    selectedCurrency = $(this).val();
+
+                    selectedCurrency = $(this).val().split("-")[0];
+                    selectedVarience = $(this).val().split("-")[1];
                     $.ajax({
-                        url: "MoneyMaster/GetExchangeRates?currencyCode=" + $(this).val(),
+                        url: "MoneyMaster/GetExchangeRates?currencyCode=" + selectedCurrency,
                         type: "get",
                         data: { userName: $(this).val() },
                         success: function (response, textStatus, jqXHR) {
@@ -513,47 +540,51 @@
 
 
         $('#txtFAmount').on('blur', function () {
-            $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtRate").val())).toFixed(2));
+            if ($(this).val() != "")
+                $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtRate").val())).toFixed(2));
 
         });
         $('#txtRate').on('blur', function () {
+            if ($(this).val() != "") {
+                $('#txtReverseRate').val(parseFloat(1 / $(this).val()).toFixed(8));
 
-            $('#txtReverseRate').val(parseFloat(1 / $(this).val()).toFixed(8));
-
-            $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
-
+                $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
+            }
 
             if (isDefaultBuy == true) {
-               
+
                 $("#convertToBase").html(parseFloat($("#txtRate").val()).toFixed(8).toString());
                 $("#convertToCurrency").html(parseFloat(1 / $(this).val()).toFixed(8));
 
 
 
             } else {
-               
+
                 $("#convertToBase").html(parseFloat($("#txtReverseRate").val()).toFixed(8));
                 $("#convertToCurrency").html(parseFloat($('#txtRate').val()).toFixed(8));
             }
+            //$('#txtLAmount').focus();
+
 
         });
         $('#txtReverseRate').on('blur', function () {
-
-            $('#txtRate').val(parseFloat(1 / $(this).val()).toFixed(8));
+            if ($(this).val() != "")
+                $('#txtRate').val(parseFloat(1 / $(this).val()).toFixed(8));
 
             $('#txtLAmount').val(parseFloat(parseFloat($("#txtRate").val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
 
-             if (isDefaultBuy == true) {
-               
+            if (isDefaultBuy == true) {
+
                 $("#convertToBase").html(parseFloat($("#txtRate").val()).toFixed(8).toString());
                 $("#convertToCurrency").html(parseFloat($('#txtReverseRate').val()).toFixed(8));
 
 
             } else {
-               
+
                 $("#convertToBase").html(parseFloat($("#txtReverseRate").val()).toFixed(8));
                 $("#convertToCurrency").html(parseFloat(1 / $(this).val()).toFixed(8));
             }
+            //$('#txtRate').focus();
 
         });
         $('#spnBuy').on('click', function () {
@@ -581,16 +612,16 @@
         $('#spnSell').on('click', function () {
 
             isDefaultBuy = false;
-            $('#lblReceivingCurrency').html("L - Amount");
-            $('#lblSellingCurrency').html("FC Amount");
+            /* $('#lblReceivingCurrency').html("L - Amount");
+            $('#lblSellingCurrency').html("FC Amount");*/
             $('#txtFAmount').val("");
             $('#txtLAmount').val("");
             if (currencyConvResponse != null) {
-                $("#txtRate").val(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8));
+                $("#txtRate").val(parseFloat(currencyConvResponse.SellRate).toFixed(8));
                 $("#convertToBase").html(parseFloat(currencyConvResponse.SellRate).toFixed(8));
                 $("#convertToCurrency").html(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8))
 
-                $("#txtReverseRate").val(parseFloat(currencyConvResponse.SellRate).toFixed(8));
+                $("#txtReverseRate").val(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8));
             }
             if (selectedCurrency != "")
                 $("#notificationMessage").html("BUY SGD SELL " + selectedCurrency);
@@ -600,15 +631,26 @@
         });
 
         $('#btnSave').on('click', function () {
+            var blnConfirm = true;
+            if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
+                blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
+                // alert("low");
+            } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
+                blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
+                //alert("hight");
+            }
+            if (!blnConfirm)
+                return;
+
             var BuyorSell = "", foreignAmount = "", localAmount = "";
+            foreignAmount = $('#txtFAmount').val();
+            localAmount = $('#txtLAmount').val();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
-                foreignAmount = $('#txtFAmount').val();
-                localAmount = $('#txtLAmount').val();
+
             } else {
                 BuyorSell = "S";
-                foreignAmount = $('#txtLAmount').val();
-                localAmount = $('#txtFAmount').val();
+
             }
             var btnHTML = $(this).html();
             $.ajax({
@@ -618,7 +660,7 @@
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
                     alert("Saved Succesfully");
-                    
+
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("error");
@@ -631,15 +673,25 @@
 
 
         $('#btnPrint').on('click', function () {
+            var blnConfirm = true;
+            if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
+                blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
+                // alert("low");
+            } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
+                blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
+                //alert("hight");
+            }
+            if (!blnConfirm)
+                return;
             var BuyorSell = "", foreignAmount = "", localAmount = "";
+            foreignAmount = $('#txtFAmount').val();
+            localAmount = $('#txtLAmount').val();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
-                foreignAmount = $('#txtFAmount').val();
-                localAmount = $('#txtLAmount').val();
+
             } else {
                 BuyorSell = "S";
-                foreignAmount = $('#txtLAmount').val();
-                localAmount = $('#txtFAmount').val();
+
             }
             var btnHTML = $(this).html();
             $.ajax({
@@ -648,8 +700,9 @@
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
-                    alert("Saved Succesfully");
-                    window.print();
+                    //alert("Saved Succesfully");
+                    //window.print();
+                    printElem({}, response);
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -678,8 +731,10 @@
 
 
                 } else {
-                    $("#txtRate").val(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8));
-                    $("#txtReverseRate").val(parseFloat(currencyConvResponse.SellRate).toFixed(8));
+
+                    $("#txtRate").val(parseFloat(currencyConvResponse.SellRate).toFixed(8).toString());
+                    $("#txtReverseRate").val(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8));
+
                     $("#notificationMessage").html("BUY SGD SELL " + selectedCurrency);
 
                     $("#convertingCurrency").html(selectedCurrency);
@@ -690,6 +745,9 @@
                 $("#txtAvgCost").val(currencyConvResponse.AvgCost);
                 $("#txtStock").val(currencyConvResponse.Stock);
                 $('#Map').show();
+                selectedVarience
+                lowLimitVarience = parseFloat(currencyConvResponse.AvgCost) - ((parseFloat(selectedVarience) / 100) * parseFloat(currencyConvResponse.AvgCost))
+                highLimitVarience = parseFloat(currencyConvResponse.AvgCost) + ((parseFloat(selectedVarience) / 100) * parseFloat(currencyConvResponse.AvgCost))
             }
 
 

@@ -14,13 +14,12 @@
                 //alert("a");
 
                 $.ajax({
-                    url: "GetExchangeDate",
+                    url: "MoneyMaster/GetExchangeDate",
                     type: "get",
                     data: { userName: "emma" },
                     success: function (response, textStatus, jqXHR) {
                         // $('#txtExchngRate').val(response.exchangeRate);
                         alert(response);
-                        debugger;
                         //$('#txtForeignAmount').val($('#txtlocalAmt').val() * parseFloat(response.exchangeRate));
 
                     },

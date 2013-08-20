@@ -8,5 +8,11 @@
         <elementListCompartment Id="fc285db1-0de4-4dbd-9f59-f777a540be04" absoluteBounds="0.76500000000000012, 1.21, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="5d73aad5-3683-414e-850a-8548f29622a7" absoluteBounds="3.375, 0.75, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/LinqMasterDataContext/tblCompany" />
+      <nestedChildShapes>
+        <elementListCompartment Id="622bb847-5ec8-4ee2-8635-25685badc5c4" absoluteBounds="3.3899999999999997, 1.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -17,6 +17,7 @@ namespace MoneyExchanger.Models
     {
         public string Code { get; set; }
         public string Description { get; set; }
+        public decimal Varience { get; set; }
     }
     public class ConversionCodes
     {

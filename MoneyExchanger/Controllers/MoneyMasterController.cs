@@ -17,7 +17,7 @@ namespace MoneyExchanger.Controllers
         {
             ViewBag.Title = "Money Exchanger";
             MoneyExchangeAttribute objMonExchng = new MoneyExchangeAttribute();
-            Random  rnd = new Random(0);
+            Random rnd = new Random(0);
             objMonExchng.VoucherID = rnd.Next().ToString();
             objMonExchng.CurrentDate = DateTime.Now;
 
@@ -38,20 +38,7 @@ namespace MoneyExchanger.Controllers
             return View(objMonExchng);
         }
 
-        public ActionResult GetExchangeDate(string hi){
-         
-            LinqMasterDataContext a = new LinqMasterDataContext();
-            var abc = (from curr in a.TblCurrencies
-                      select new CurrencyCodes
-                      {
-                         Code =  curr.CurrencyCode,
-                          Description = curr.CurrencyName
-                      }).ToList<CurrencyCodes>();
-           
-            return Json(abc, JsonRequestBehavior.AllowGet);
-           
-        }
-        public ActionResult GetBoardDisplayData(string hi)
+        public ActionResult GetExchangeDate(string hi)
         {
 
             LinqMasterDataContext a = new LinqMasterDataContext();
@@ -59,21 +46,16 @@ namespace MoneyExchanger.Controllers
                        select new CurrencyCodes
                        {
                            Code = curr.CurrencyCode,
-                           Description = curr.CurrencyName
+                           Description = curr.CurrencyName,
+                           Varience = Convert.ToDecimal(curr.Varience)
                        }).ToList<CurrencyCodes>();
 
             return Json(abc, JsonRequestBehavior.AllowGet);
 
         }
-        public ActionResult GetBoardDisplay(string hi)
-        {
-
-            return View();
-
-        }
         public ActionResult GetExactMasterData()
         {
-            
+
 
             return View();
         }
@@ -81,13 +63,17 @@ namespace MoneyExchanger.Controllers
         {
             LinqMasterDataContext mastContext = new LinqMasterDataContext();
             var convertionList = mastContext.GetLocationCurrency("L1", currencyCode).First();
+
+
             return Json(convertionList, JsonRequestBehavior.AllowGet); ;
         }
-        public ActionResult SaveTransactions(string currCode, string transactionType, string Rate,string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock)
+        public ActionResult SaveTransactions(string currCode, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock)
         {
             LinqMasterDataContext mastContext = new LinqMasterDataContext();
-            var resultSet = mastContext.SaveTransaction("FE", currCode, transactionType, Convert.ToDecimal(Rate), Convert.ToDecimal(ForeignAmount), Convert.ToDecimal(LocalAmount), Convert.ToDecimal(AvgCost), Convert.ToDouble(AvgStock));
-            return Json(resultSet, JsonRequestBehavior.AllowGet); ;
+            var ret = mastContext.SaveTransaction("FE", currCode, transactionType, Convert.ToDecimal(Rate), Convert.ToDecimal(ForeignAmount), Convert.ToDecimal(LocalAmount), Convert.ToDecimal(AvgCost), Convert.ToDouble(AvgStock));
+            var compDetails = mastContext.tblCompanies.FirstOrDefault();
+            var AdditionaValues = new { currCode = currCode, transactionType = transactionType, ForeignAmount = ForeignAmount, LocalAmount = LocalAmount, Rate = Rate };
+            return Json(new { ret, compDetails, AdditionaValues }, JsonRequestBehavior.AllowGet);
         }
 
     }
