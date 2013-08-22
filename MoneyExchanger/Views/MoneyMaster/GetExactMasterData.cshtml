@@ -53,58 +53,29 @@
 
 </head>
 <body>
-<h2>Get ExactMaster Data</h2>
- <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="title" href="#">ALIFFAN AGENCY PTE LTD MC</a>
-          <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-              DATE <a href="#" id="aDate" class="navbar-link">25/07/2020</a>
-            </p>
-            
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
 
-    <div class="row-fluid">
-	<div class="">
-	<div class="bs-example">
-      <div class="alert alert-danger" style="display:none">
-        <button data-dismiss="alert" class="close" type="button">×</button>
-        <strong>Oh snap!</strong> Change a few things up and try submitting again.
-      </div>
-      <div class="alert alert-success" style="display:none">
-        <button data-dismiss="alert" class="close" type="button">×</button>
-        <strong>Well done!</strong> You successfully read this important alert message.
-      </div>
-      <div class="alert alert-info" style="display:none">
-        <button data-dismiss="alert" class="close" type="button">×</button>
-        <strong>Heads up!This alert needs your attention, but it's not super important.</strong> 
-      </div>
-    </div>
-	
-	</div>
-	
-	</div>
-	<div class="row-fluid">
+
+
+<div class="row-fluid">
 	<div class="plan clearfix navbar-inner">
                      <div class="navbar">
         <form class="form-horizontal form-dark">
         <fieldset>
-          <legend>Currency Transactions</legend>
-        <div class="pull-left MarR25">
-		  <div class="control-group">  
-		    <label for="selectError" class="control-label pull-left">Type</label>
-            
+          <legend>Currency Transaction</legend>
+           <div class="" style="left: 500px;position: relative;width: 235px;top: -50px;">
+       
+        <strong id="notificationMessage" style="font-size:20px;color:green"></strong> 
+      </div>
+      <div class="" style="left: 801px;position: relative;width: 235px;top: -71px;">
+       
+        <strong id="lbldate" style="font-size:20px;">@DateTime.Now.ToString("dd/MM/yyyy")</strong> 
+      </div>
+
+        <div class="MarR25">
+		  <div class="type">  
+		    <label for="selectError" class="control-label pull-left PadR25"></label>
  <div>		  
-<label class="checkbox toggle well" onclick="">
+<label id="BS" class="checkbox toggle well span4 " onclick="">
 
 	<input id="view" type="checkbox" checked />
 	<p>
@@ -117,111 +88,108 @@
 </label>
 </div>
 </div>
-		<div class="control-group" style="display:none">
-            <label for="input01" class="control-label">Voucher</label>
+<div class="fieldsWrap">
+
+<div class="control-group">
+            <label for="input01" class="control-label">Currency</label>
             <div class="controls">
-              <input type="text" id="input01" placeholder="Voucher" class="input-xlarge">
+              <select id="combobox">
+   
+  </select>
+            </div>
+          </div>
+          	<div class="control-group" style="visibility:hidden">
+            <label for="input01" class="control-label">EMMA</label>
+            <div class="controls">
+              <input type="text" id="input01" placeholder="Rate" class="input-medium">
          
 		 </div>
           </div>
-          <div class="control-group" style="display:none">
-            <label for="input01" class="control-label">Location</label>
+        
+		
+         
+          <div class="control-group">
+         <label for="txtRate" class="control-label">Rate</label>
             <div class="controls">
-              <input type="text" id="input01" placeholder="Location" class="input-xlarge">
+              <input type="text" id="txtRate" placeholder="0.00" class="input-medium">
+            </div>
+           
+         
+		 </div>
+          <div class="control-group">
+             <label for="txtReverseRate" class="control-label">Reverse Rate</label>
+            <div class="controls">
+              <input type="text" id="txtReverseRate" placeholder="0.00" class="input-medium">
             </div>
           </div>
 		
 
 		<div class="control-group">
-            <label for="selectError" class="control-label">Currency</label>
-            <div class="controls ">
-                 
-           <select id="comboboxCurr">
-   
-  </select>
+           <label for="txtFAmount" id="lblReceivingCurrency" class="control-label">FC Amount</label>
+            <div class="controls">
+              <input type="text" id="txtFAmount" placeholder="0.00" class="input-medium">
             </div>
           </div> 
 		  <div class="control-group">
-            <label for="txtFAmount" id="lblReceivingCurrency" class="control-label">FC Amount</label>
+
+          <label for="input01" id="lblSellingCurrency" class="control-label">L - Amount</label>
             <div class="controls">
-              <input type="text" id="txtFAmount" placeholder="0.00" class="input-xlarge">
+              <input type="text" id="txtLAmount" placeholder="0.00" class="input-medium">
+            </div>
+                      
+          </div>
+		  
+		  
+		 
+		</div>
+		</div> 
+		<div class="pull-left Right-side-Area MarL115" >
+
+        
+
+
+		 <div >
+           <label for="input01" class="control-label text-left">Avg Cost</label>
+            <div class="controls">
+              <input type="text" id="txtAvgCost" placeholder="0.00" class="input-medium" disabled=true>
             </div>
           </div>
-		  <div class="control-group">
-            <label for="txtRate" class="control-label">Rate</label>
-            <div class="controls">
-              <input type="text" id="txtRate" placeholder="0.00" class="input-xlarge">
-            </div>
-          </div>
-           <div class="control-group">
-            <label for="txtReverseRate" class="control-label">Reverse Rate</label>
-            <div class="controls">
-              <input type="text" id="txtReverseRate" placeholder="0.00" class="input-xlarge">
-            </div>
-          </div>
-		  <div class="control-group">
-            <label for="input01" id="lblSellingCurrency" class="control-label">L - Amount</label>
-            <div class="controls">
-              <input type="text" id="txtLAmount" placeholder="0.00" class="input-xlarge">
-            </div>
-          </div>
-		<div class="control-group">
-            <label for="input01" class="control-label text-left">Avg Cost</label>
-            <div class="controls">
-              <input type="text" id="txtAvgCost" placeholder="0.00" class="input-xlarge" disabled=true>
-            </div>
-          </div>
-		  <div class="control-group">
+		  <div class="MarT10">
             <label for="input01" class="control-label">Stock</label>
             <div class="controls">
-              <input type="text" id="txtStock" placeholder="0.00" class="input-xlarge" disabled=true>
+              <input type="text" id="txtStock" placeholder="0.00" class="input-medium" disabled=true>
             </div>
           </div>
-		  <div id="divUsers"></div>
-		 </div> 
-		 <div class="pull-left clearfix">
-		 <div class="R clearfix Map hide" id="Map">
+		</div>
+		 <div class=" clearfix  pull-left H150 " >
+		 <div class="R clearfix Map hide" id="Map"   >
 		 <div class="topVal" id="convertToBase">
 		 
 		 </div>
 		 <div class="leftVal" id="locationCurrency">
-		 SGD
+		SGD
 		 </div>
 		 <div class="rightVal" id="convertingCurrency">
-		 
+		
 		 </div>
 		 <div class="bottomVal" id="convertToCurrency">
 		 
 		 </div>
-		<img src=@Url.Content("~/image/mC.png") class="featurette-image" style="height:100px">
+		<img src=@Url.Content("~/image/mC.png") class="featurette-image">
 		</div>
-            
-		 <div class="pull-left Right-side-Area" >
-		@* <div class="control-group">
-            <label for="input01" class="control-label text-left">Avg Cost</label>
-            <div class="controls">
-              <input type="text" id="txtAvgCost" placeholder="0.00" class="input-xlarge">
-            </div>
-          </div>
-		  <div class="control-group">
-            <label for="input01" class="control-label">Stock</label>
-            <div class="controls">
-              <input type="text" id="txtStock" placeholder="0.00" class="input-xlarge">
-            </div>
-          </div>*@
-     
-		</div>
+		 
 </div>
- <div class="" style="left: 835px;position: relative;width: 235px;top: -351px;">
-       
-        <strong id="notificationMessage" style="font-size:20px;color:green"></strong> 
-      </div>
+
         </fieldset>
 </form>
       </div>
 					</div>
 	</div>
 
+
+
+  <!-- older one -->
+	
 	<div class="row-fluid ">
 	<div class="plan clearfix navbar-inner MarT10 PadT10 ">
 	<button class="btn btn-primary" type="submit" id="btnSave">Save</button>
@@ -235,9 +203,7 @@
 	<button class="btn btn-redlight hide" type="submit">Stock Report</button>
 	</div>
 	</div>
-    <div style="display:none">
     <div id="toPrint"></div>
-    </div>
     <div class="modal fade" id="test_modal">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
@@ -356,20 +322,17 @@
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR) {
+                    // $('#txtExchngRate').val(response.exchangeRate);
 
-                    $.each(response.varCurr, function () {
-                        $('#comboboxCurr').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Description'] + " (" + this['Code'] + ")"));
+                    $.each(response, function () {
+                        $('#combobox').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Code'] + "-" + this['Description']));
                     });
 
-                    $.each(response.varUsers, function () {
-                        $('#divUsers').append($("<input>").attr({
-                            type: 'radio', name: 'usrs', id: this['UserId']
-                        }).html(this['UserId']).after("<span style='padding-right:30px;'>" + this['UserId'] + "</span>"));
-                    });
+                    //alert(response);
 
-                    $("input:radio[name=usrs]:first").attr('checked', true);
+                    //$('#txtForeignAmount').val($('#txtlocalAmt').val() * parseFloat(response.exchangeRate));
 
-                   },
+                },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("error");
                 }, complete: function () {
@@ -379,7 +342,6 @@
 
 
         });
-
 
         (function ($) {
             $.widget("custom.combobox", {
@@ -420,6 +382,14 @@
                         },
 
                         autocompletechange: "_removeIfInvalid"
+
+                    });
+                    $(this.input).on('mouseup', function (e) {
+                        e.preventDefault();
+                        $(this).select();
+                    });
+                    $(this.input).on('blur', function (e) {
+                        //alert("hai");
                     });
                 },
 
@@ -445,6 +415,8 @@
           })
           .click(function () {
               input.focus();
+              input.select();
+              //c alert("hai");
 
               // Close if already visible
               if (wasOpen) {
@@ -478,8 +450,8 @@
 
                     // Search for a match (case-insensitive)
                     var value = this.input.val(),
-          valueLowerCase = value.toLowerCase(),
-          valid = false;
+                    valueLowerCase = value.toLowerCase(),
+                    valid = false;
                     this.element.children("option").each(function () {
                         if ($(this).text().toLowerCase() === valueLowerCase) {
                             this.selected = valid = true;
@@ -511,8 +483,10 @@
             });
         })(jQuery);
 
+
         $(function () {
-            $("#comboboxCurr").combobox({
+            $("#combobox").combobox({
+                "option": { "style": "width:100px" },
                 select: function (event, ui) {
                     // alert("akka");
 
@@ -542,7 +516,8 @@
                         }
                     });
 
-                }
+                },
+                change: function (event, ui) { alert("Hi"); }
             });
 
         });
@@ -551,6 +526,11 @@
         $('#txtFAmount').on('blur', function () {
             if ($(this).val() != "")
                 $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtRate").val())).toFixed(2));
+
+        });
+        $('#txtLAmount').on('blur', function () {
+            if ($(this).val() != "")
+                $('#txtFAmount').val(parseFloat(parseFloat($(this).val()) / parseFloat($("#txtRate").val())).toFixed(2));
 
         });
         $('#txtRate').on('blur', function () {
@@ -578,7 +558,7 @@
         });
         $('#txtReverseRate').on('blur', function () {
             if ($(this).val() != "")
-                $('#txtRate').val(parseFloat(1 / $(this).val()).toFixed(8));
+                $('#txtRate').val(parseFloat(parseFloat(1 / $(this).val()).toFixed(8)).toString());
 
             $('#txtLAmount').val(parseFloat(parseFloat($("#txtRate").val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
 
@@ -654,9 +634,6 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
-            selectedUser = $('input:radio:checked').next().text();
-
-            
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -666,12 +643,13 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
                     alert("Saved Succesfully");
+                    populateData();
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -698,7 +676,6 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
-            selectedUser = $('input:radio:checked').next().text();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -708,15 +685,14 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
-                    //alert("Saved Succesfully");
-                    //window.print();
-                    printElem({}, response);
-
+                    alert("Saved Succesfully");
+                    window.print();
+                    populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("error");
@@ -732,10 +708,11 @@
             if (currencyConvResponse != null) {
                 //currencyConvResponse = response;
                 $('#txtFAmount').val("");
+                $('#txtLAmount').val("");
 
                 if (isDefaultBuy == true) {
-                    $("#txtRate").val(parseFloat(currencyConvResponse.BuyRate).toFixed(8).toString());
-                    $("#txtReverseRate").val(parseFloat(1 / parseFloat(currencyConvResponse.BuyRate)).toFixed(8));
+                    $("#txtRate").val(parseFloat(parseFloat(currencyConvResponse.BuyRate).toFixed(8)).toString());
+                    $("#txtReverseRate").val(parseFloat(parseFloat(1 / parseFloat(currencyConvResponse.BuyRate)).toFixed(8)));
                     $("#notificationMessage").html("BUY " + selectedCurrency + " SELL SGD");
 
                     $("#convertingCurrency").html(selectedCurrency);
@@ -746,7 +723,7 @@
                 } else {
 
                     $("#txtRate").val(parseFloat(currencyConvResponse.SellRate).toFixed(8).toString());
-                    $("#txtReverseRate").val(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8));
+                    $("#txtReverseRate").val(parseFloat(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8)));
 
                     $("#notificationMessage").html("BUY SGD SELL " + selectedCurrency);
 
@@ -755,8 +732,8 @@
                     $("#convertToCurrency").html(parseFloat(1 / parseFloat(currencyConvResponse.SellRate)).toFixed(8));
                 }
 
-                $("#txtAvgCost").val(currencyConvResponse.AvgCost);
-                $("#txtStock").val(currencyConvResponse.Stock);
+                $("#txtAvgCost").val(parseFloat(parseFloat(currencyConvResponse.AvgCost).toFixed(8)));
+                $("#txtStock").val(parseFloat(parseFloat(currencyConvResponse.Stock).toFixed(8)));
                 $('#Map').show();
                 selectedVarience
                 lowLimitVarience = parseFloat(currencyConvResponse.AvgCost) - ((parseFloat(selectedVarience) / 100) * parseFloat(currencyConvResponse.AvgCost))
@@ -772,3 +749,4 @@
 </body>
 
 </html>
+
