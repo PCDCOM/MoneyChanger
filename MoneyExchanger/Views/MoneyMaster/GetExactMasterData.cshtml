@@ -15,6 +15,8 @@
     <link href=@Url.Content("~/css/bootstrap-responsive.css") rel="stylesheet"/>
 	<link href=@Url.Content("~/css/toggle-switch.css") rel="stylesheet"/>
 	<link href=@Url.Content("~/css/custom.css") rel="stylesheet"/>
+    <link href=@Url.Content("~/css/print.css") rel="stylesheet"/>
+
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -160,6 +162,7 @@
               <input type="text" id="txtStock" placeholder="0.00" class="input-medium" disabled=true>
             </div>
           </div>
+          <div id="divUsers"></div>
 		</div>
 		 <div class=" clearfix  pull-left H150 " >
 		 <div class="R clearfix Map hide" id="Map"   >
@@ -276,27 +279,33 @@
             strHtml += "<span>" + obj.compDetails.Postalcode + "</span><br />";
             strHtml += "<span>Tel: " + obj.compDetails.Phone + "</span><br />";
             strHtml += "<span>LIC No: " + obj.compDetails.TaxRef + "</span><br />";
-            strHtml += "<span>Receipt Number:" + obj.ret[0].TranNo + "    </span>";
-            strHtml += "<span>" + $("#aDate").html() + "</span>";
+            strHtml += "<span class='spnBold'>Receipt Number:  " + obj.ret[0].TranNo + "</span>";
+            strHtml += "<span style='padding-left:45px;'>" + $("#lbldate").html() + "</span>";
 
             strHtml += "<hr />";
             strHtml += "<span>Cash Customer</span><br />";
-            strHtml += "<span>Cash Customer</span><br />";
-            strHtml += "<hr style='border-top:none;border-bottom:dotted' />";
-            strHtml += "<span>Curr: </span><span>" + obj.AdditionaValues.currCode + "</span><br />";
             strHtml += "<table><tr>";
-            strHtml += "<th style='border:1px dotted black;padding:5px;' align='right' width='33%'>FC Amt</th>";
-            strHtml += "<th style='border:1px dotted black;padding:5px;' align='right' width='33%'>LC Amt</th>";
-            strHtml += "<th style='border:1px dotted black;padding:5px;' align='right' width='33%'>Rate</th></tr>";
+            strHtml += "<th align='left' width='10%'>" + obj.AdditionaValues.currCode + "</th>";
+            if (obj.AdditionaValues.transactionType == "B")
+                strHtml += "<th align='left' width='10%'>Buy</th>";
+            else
+                strHtml += "<th align='left' width='10%'>Sell</th>";
+            strHtml += "<th align='right' width='30%'> Rate:" + obj.AdditionaValues.Rate + "</th>";
+            strHtml += "</tr></table><br/>";
+            strHtml += "<table><tr>";
+            strHtml += "<th align='right' width='60%'>FC Amt</th>";
+            strHtml += "<th align='right' width='40%'>LC Amt</th></tr>";
 
-            strHtml += "<tr><td style='border:1px dotted black;padding:5px;' align='right'>" + obj.AdditionaValues.ForeignAmount + "</td>";
-            strHtml += "<td style='border:1px dotted black;padding:5px;' align='right'>" + obj.AdditionaValues.LocalAmount + "</td>";
-            strHtml += "<td style='border:1px dotted black;padding:5px;' align='right'>" + obj.AdditionaValues.Rate + "</td>";
+            strHtml += "<tr><td align='right'>" + obj.AdditionaValues.ForeignAmount + "</td>";
+            strHtml += "<td align='right'>" + obj.AdditionaValues.LocalAmount + "</td>";
+
             strHtml += "</tr></table>";
-            strHtml += "<hr style='border-top:none;border-bottom:dotted' /><br />";
-            strHtml += "<span>Please Pay: </span><span>" + obj.AdditionaValues.Rate + "</span><br />";
-            strHtml += "<hr style='border-top:none;border-bottom:dotted' />";
-            strHtml += "<span>Pls. Count $ check notes before leaving the counter as we shall not entertain any complaints thereafter. Thank you.</span><br />";
+            strHtml += "<br />";
+
+            strHtml += "<span class='spnBold'>Please Pay: </span><span class='spnBold'>" + obj.AdditionaValues.LocalAmount + "</span><br />";
+
+            strHtml += "<hr />";
+            strHtml += "<span class='info'>Pls. Count $ check notes before leaving the counter as we shall not entertain any complaints thereafter. Thank you.</span><br />";
             strHtml += "<hr />";
             $('#toPrint').html(strHtml);
             $('#toPrint').printElement(options);
@@ -324,10 +333,16 @@
                 success: function (response, textStatus, jqXHR) {
                     // $('#txtExchngRate').val(response.exchangeRate);
 
-                    $.each(response, function () {
+                    $.each(response.varCurr, function () {
                         $('#combobox').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Code'] + "-" + this['Description']));
                     });
 
+                    $.each(response.varUsers, function () {
+                        $('#divUsers').append($("<input>").attr({
+                            type: 'radio', name: 'usrs', id: this['UserId']
+                        }).html(this['UserId']).after("<span style='padding-right:30px;'>" + this['UserId'] + "</span>"));
+                    });
+                    $("input:radio[name=usrs]:first").attr('checked', true);
                     //alert(response);
 
                     //$('#txtForeignAmount').val($('#txtlocalAmt').val() * parseFloat(response.exchangeRate));
@@ -634,6 +649,7 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
+            selectedUser = $('input:radio:checked').next().text();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -643,7 +659,7 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
@@ -651,6 +667,10 @@
                     alert("Saved Succesfully");
                     populateData();
 
+                },
+                success: function (response, textStatus, jqXHR, btnHTML) {
+                    printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
+                    populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("error");
@@ -676,6 +696,7 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
+            selectedUser = $('input:radio:checked').next().text();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -685,13 +706,13 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
-                    alert("Saved Succesfully");
-                    window.print();
+                    
+                    printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
                     populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

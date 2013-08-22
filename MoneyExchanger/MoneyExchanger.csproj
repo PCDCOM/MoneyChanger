@@ -134,6 +134,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\custom.css" />
     <Content Include="css\docs.css" />
+    <Content Include="css\print.css" />
     <Content Include="css\toggle-switch.css" />
     <Content Include="Global.asax" />
     <Content Include="image\glyphicons-halflings-white.png" />
@@ -163,6 +164,7 @@
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.printElement.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
