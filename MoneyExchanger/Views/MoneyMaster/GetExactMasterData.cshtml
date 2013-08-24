@@ -16,6 +16,7 @@
 	<link href=@Url.Content("~/css/toggle-switch.css") rel="stylesheet"/>
 	<link href=@Url.Content("~/css/custom.css") rel="stylesheet"/>
     <link href=@Url.Content("~/css/print.css") rel="stylesheet"/>
+    <link href=@Url.Content("~/css/prettyCheckable.css") rel="stylesheet"/>
 
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
@@ -177,7 +178,10 @@
               <input type="number" id="txtStock" placeholder="0.00" class="input-medium" disabled=true>
             </div>
           </div>
-          <div id="divUsers"></div>
+          <div class="MarT10">
+          <label for="input01" class="control-label">User Type</label>
+          <div id="divUsers" class="controls"></div>
+          </div>
 		</div>
 		 <div class=" clearfix  pull-left H150 " >
 		 <div class="R clearfix Map hide" id="Map"   >
@@ -298,7 +302,8 @@
     <script src=@Url.Content("~/Scripts/jquery-1.7.1.js")></script> 
     <script src=@Url.Content("~/Scripts/jquery.printElement.js") type="text/javascript"></script> 
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    
+       <script src=@Url.Content("~/Scripts/prettyCheckable.js")></script>
+     
  
    
     <script>
@@ -307,6 +312,7 @@
         var selectedCurrency = "";
         var selectedVarience = "";
         var lowLimitVarience = "", highLimitVarience = "";
+        var userProfileName = "ARJ";
         function printElem(options, obj) {
             var strHtml = "<span>" + obj.compDetails.Description + "</span><br />";
             strHtml += "<span>Authorised Moneychanger</span><br />";
@@ -376,10 +382,19 @@
 
                     $.each(response.varUsers, function () {
                         $('#divUsers').append($("<input>").attr({
-                            type: 'radio', name: 'usrs', id: this['UserId']
-                        }).html(this['UserId']).after("<span style='padding-right:30px;'>" + this['UserId'] + "</span>"));
+                            type: 'radio', name: 'usrs', id: this['UserId'], class: "prettycheckBox", "data-label": this['UserId']
+                        })); //.html("").after("<label style='padding-right:30px;'>" + this['UserId'] + "</label>"));
                     });
-                    $("input:radio[name=usrs]:first").attr('checked', true);
+                     $("input:radio[name=usrs]:first").attr('checked', true);
+
+                    $('input.prettycheckBox').prettyCheckable();
+                    $('div.clearfix a').on('click', function (e) {
+                        // alert("hai");
+                        // debugger;
+                        // alert($(this).next().text());
+                        userProfileName = $(this).next().text();
+                    });
+                    //.closest('.clearfix');
                     //alert(response);
 
                     //$('#txtForeignAmount').val($('#txtlocalAmt').val() * parseFloat(response.exchangeRate));
@@ -701,6 +716,9 @@
         });
 
         $('#btnSave').on('click', function () {
+
+
+
             var blnConfirm = true;
             if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
                 blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
