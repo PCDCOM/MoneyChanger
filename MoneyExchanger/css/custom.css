@@ -47,32 +47,35 @@ font-weight:bold !important;
 color:#fff !important;
 }
 .topVal{
-
-    position: relative;
-    top: 60px;
-	font-weight:bold;
-	font-size:20px;
+left: 40px;
+position: relative;
+font-weight: bold;
+font-size: 20px;
+color:#029239;
 }
 .leftVal{
 position: relative;
-    top: 98px;
+    top: 70px;
 	font-weight:bold;
 	font-size:20px;
 	left:-30px;
+	color:#A80005;
 }
 .rightVal{
 position: relative;
-     top: 81px;
-	 left:88px;
-	 font-weight:bold;
-	 font-size:20px;
+top: 50px;
+left: 150px;
+font-weight: bold;
+font-size: 20px;
+color:#A80005;
 }
 .bottomVal{
 position: relative;
-    top: 120px;
-	left:3px;
-	font-weight:bold;
-	font-size:20px;
+top: 120px;
+left: 40px;
+font-weight: bold;
+font-size: 20px;
+color:#002a80;
 }
 .R{
 position:relative;
@@ -91,10 +94,10 @@ position:relative;
 }
 .Right-side-Area .control-label{
 text-align:left !important;
-width:100px !important;
+width:80px !important;
 }
 .Right-side-Area .controls{
-margin-left:100px !important;
+margin-left:85px !important;
 }
 .Map{
 top:-50px;
@@ -119,4 +122,59 @@ clear:both;
 padding:10px;
 float:left;
 width:250px;
+}
+.PadL10{padding-left:10px}
+.PadR25{padding-right:25px !important}
+.form-horizontal .control-group {
+
+float:left;
+}
+.type{
+clear:both;
+width:100%;
+float:left;
+}
+.MarT20{
+margin-top:10px; 
+}
+.MarL115{
+margin-left: 95px;
+}
+#BS{
+transform: rotate(90deg);
+-ms-transform: rotate(90deg); /* IE 9 */
+-webkit-transform: rotate(90deg); /* Safari and Chrome */
+-moz-transform: rotate(90deg);
+left:-300px;
+top:120px;
+ writing-mode: rl-tb;
+ height:50px;
+
+
+}
+#BS  p{
+line-height:50px;
+}
+#BS span{
+        -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    writing-mode: rl-tb;
+}
+.fieldsWrap{
+position:relative;
+top:-50px;
+}
+.Right-side-Area {
+position: relative;
+top: -20px;
+clear:both;
+}
+.featurette-image{
+height: 150px;
+top: -50px;
+position: relative;
+}
+.H150{
+height:150px;
 }

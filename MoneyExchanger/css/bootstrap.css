@@ -6230,7 +6230,7 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
-input[type='text']
+input[type='text'], input[type='number']
 {
     height:30px;
 }

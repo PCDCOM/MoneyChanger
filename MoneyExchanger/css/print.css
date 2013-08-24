@@ -1,0 +1,25 @@
+﻿table
+{
+    width:88%;
+}
+th
+{
+   font-weight:bold;  
+   border:1px dotted black;padding:1px;  
+}
+td
+{
+    border:1px dotted black;padding:1px;
+}
+hr
+{
+    border-top:none;border-bottom:dotted;
+}
+.info
+{
+    font-size:10px;
+}
+span.spnBold
+{
+    font-weight:bold;
+}

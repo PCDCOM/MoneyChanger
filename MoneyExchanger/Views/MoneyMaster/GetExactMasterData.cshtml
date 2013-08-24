@@ -64,16 +64,31 @@
         <form class="form-horizontal form-dark">
         <fieldset>
           <legend>Currency Transaction</legend>
-           <div class="" style="left: 500px;position: relative;width: 235px;top: -50px;">
+           <div class="" style="left: 500px;position: absolute;width: 235px;top: 10px;">
        
         <strong id="notificationMessage" style="font-size:20px;color:green"></strong> 
       </div>
-      <div class="" style="left: 801px;position: relative;width: 235px;top: -71px;">
+      <div class="" style="left: 801px;position: absolute;width: 165px;top: 10px;">
        
         <strong id="lbldate" style="font-size:20px;">@DateTime.Now.ToString("dd/MM/yyyy")</strong> 
       </div>
+     
 
         <div class="MarR25">
+       @* <div class="control-group">
+	<div class="">
+	<button class="btn btn-primary" type="submit" id="btnSave">Save</button>
+    <button class="btn btn-primary" type="submit" id="btnPrint">Save and Print</button>
+    
+	<button class="btn btn-warning" type="submit">Close</button>
+	<button class="btn btn-danger" type="submit" onclick="populateData();">Reset</button>
+	<button class="btn btn-success hide" type="submit">Fix this Rate</button>
+	<button class="btn btn-info hide " type="submit">Clear F5</button>
+	<button class="btn btn-inverse hide" type="submit">Audit Report</button>
+	<button class="btn btn-redlight hide" type="submit">Stock Report</button>
+	</div>
+	</div>*@
+        	
 		  <div class="type">  
 		    <label for="selectError" class="control-label pull-left PadR25"></label>
  <div>		  
@@ -108,12 +123,12 @@
 		 </div>
           </div>
         
-		
+	
          
           <div class="control-group">
          <label for="txtRate" class="control-label">Rate</label>
             <div class="controls">
-              <input type="text" id="txtRate" placeholder="0.00" class="input-medium">
+              <input type="number" id="txtRate"  placeholder="0.00" class="input-medium">
             </div>
            
          
@@ -121,7 +136,7 @@
           <div class="control-group">
              <label for="txtReverseRate" class="control-label">Reverse Rate</label>
             <div class="controls">
-              <input type="text" id="txtReverseRate" placeholder="0.00" class="input-medium">
+              <input type="number" id="txtReverseRate" placeholder="0.00" class="input-medium">
             </div>
           </div>
 		
@@ -129,14 +144,14 @@
 		<div class="control-group">
            <label for="txtFAmount" id="lblReceivingCurrency" class="control-label">FC Amount</label>
             <div class="controls">
-              <input type="text" id="txtFAmount" placeholder="0.00" class="input-medium">
+              <input type="number" id="txtFAmount" placeholder="0.00" class="input-medium">
             </div>
           </div> 
 		  <div class="control-group">
 
           <label for="input01" id="lblSellingCurrency" class="control-label">L - Amount</label>
             <div class="controls">
-              <input type="text" id="txtLAmount" placeholder="0.00" class="input-medium">
+              <input type="number" id="txtLAmount" placeholder="0.00" class="input-medium">
             </div>
                       
           </div>
@@ -153,13 +168,13 @@
 		 <div >
            <label for="input01" class="control-label text-left">Avg Cost</label>
             <div class="controls">
-              <input type="text" id="txtAvgCost" placeholder="0.00" class="input-medium" disabled=true>
+              <input type="number" id="txtAvgCost" placeholder="0.00" class="input-medium" disabled=true>
             </div>
           </div>
 		  <div class="MarT10">
             <label for="input01" class="control-label">Stock</label>
             <div class="controls">
-              <input type="text" id="txtStock" placeholder="0.00" class="input-medium" disabled=true>
+              <input type="number" id="txtStock" placeholder="0.00" class="input-medium" disabled=true>
             </div>
           </div>
           <div id="divUsers"></div>
@@ -192,12 +207,34 @@
 
 
   <!-- older one -->
+    <div class="" style="position: relative; bottom: 363px; left: 787px; width: 200px;">
+        <div class="" style="width: 140px;">
+        <div class"CB" style="padding-bottom:10px">
+            <button class="btn btn-primary" type="submit" id="btnSave" style="width:120px;">
+                Save</button></div>
+          <div style="padding-bottom:10px">  <button class="btn btn-primary" type="submit" id="btnPrint" style="width:120px;">
+                Save and Print</button></div> 
+                <div style="padding-bottom:10px">  <button class="btn btn-danger" type="submit" onclick="populateData();" style="width:120px;">
+                Reset</button></div> 
+           <div style="padding-bottom:10px" > <button class="btn btn-warning" type="submit" style="width:120px;">
+                Close</button></div>
+          
+            <button class="btn btn-success hide" type="submit">
+                Fix this Rate</button>
+            <button class="btn btn-info hide " type="submit">
+                Clear F5</button>
+            <button class="btn btn-inverse hide" type="submit">
+                Audit Report</button>
+            <button class="btn btn-redlight hide" type="submit">
+                Stock Report</button>
+        </div>
+    </div>
 	
-	<div class="row-fluid ">
+	@*<div class="row-fluid ">
 	<div class="plan clearfix navbar-inner MarT10 PadT10 ">
 	<button class="btn btn-primary" type="submit" id="btnSave">Save</button>
     <button class="btn btn-primary" type="submit" id="btnPrint">Save and Print</button>
-    @*<input type="button" value="Default" id="simplePrint" />*@
+    @*<input type="button" value="Default" id="simplePrint" />
 	<button class="btn btn-warning" type="submit">Close</button>
 	<button class="btn btn-danger" type="submit" onclick="populateData();">Reset</button>
 	<button class="btn btn-success hide" type="submit" >Fix this Rate</button>
@@ -205,7 +242,7 @@
 	<button class="btn btn-inverse hide" type="submit">Audit Report</button>
 	<button class="btn btn-redlight hide" type="submit">Stock Report</button>
 	</div>
-	</div>
+	</div>*@
     <div id="toPrint"></div>
     <div class="modal fade" id="test_modal">
   <div class="modal-header">
@@ -518,6 +555,7 @@
 
                                 currencyConvResponse = response;
                                 populateData();
+                                $("#txtFAmount").focus();
                             }
                             //alert(response);
 
@@ -543,6 +581,34 @@
                 $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtRate").val())).toFixed(2));
 
         });
+        $('#txtRate').on('keydown', function (event) {
+                    if (event.keyCode == 13) {
+                        //$('.tab' + (index + 1)).focus();
+                        $('#txtFAmount').focus();
+                        event.preventDefault();
+                        }
+                });
+        $('#txtReverseRate').on('keydown', function (event) {
+            if (event.keyCode == 13) {
+                //$('.tab' + (index + 1)).focus();
+                $('#txtRate').focus();
+                event.preventDefault();
+            }
+        });
+        $('#txtFAmount').on('keydown', function (event) {
+            if (event.keyCode == 13) {
+                //$('.tab' + (index + 1)).focus();
+                $('#btnPrint').focus();
+                event.preventDefault();
+            }
+        });
+        $('#txtLAmount').on('keydown', function (event) {
+            if (event.keyCode == 13) {
+                //$('.tab' + (index + 1)).focus();
+                $('#btnPrint').focus();
+                event.preventDefault();
+            }
+        });
         $('#txtLAmount').on('blur', function () {
             if ($(this).val() != "")
                 $('#txtFAmount').val(parseFloat(parseFloat($(this).val()) / parseFloat($("#txtRate").val())).toFixed(2));
@@ -551,7 +617,7 @@
         $('#txtRate').on('blur', function () {
             if ($(this).val() != "") {
                 $('#txtReverseRate').val(parseFloat(1 / $(this).val()).toFixed(8));
-
+                if ($("#txtFAmount").val() != "")
                 $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
             }
 
@@ -574,7 +640,7 @@
         $('#txtReverseRate').on('blur', function () {
             if ($(this).val() != "")
                 $('#txtRate').val(parseFloat(parseFloat(1 / $(this).val()).toFixed(8)).toString());
-
+            if ($("#txtFAmount").val() != "")
             $('#txtLAmount').val(parseFloat(parseFloat($("#txtRate").val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
 
             if (isDefaultBuy == true) {
@@ -642,6 +708,13 @@
             } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
                 blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
                 //alert("hight");
+            } else if ($("#txtFAmount").val() =="" ||  parseFloat($("#txtFAmount").val()) == 0) {
+                 alert("Kindly Enter Foreign Currency");
+                blnConfirm = false;
+            } 
+            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val())) {
+                alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
+                blnConfirm = false;
             }
             if (!blnConfirm)
                 return;
@@ -690,6 +763,13 @@
             } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
                 blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
                 //alert("hight");
+            } else if ($("#txtFAmount").val() == "" || parseFloat($("#txtFAmount").val()) == 0) {
+                alert("Kindly Enter Foreign Currency");
+                blnConfirm = false;
+            }
+            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val())) {
+                alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
+                blnConfirm = false;
             }
             if (!blnConfirm)
                 return;
@@ -764,6 +844,29 @@
 
         }
 
+
+
+        (function ($) {
+            $.fn.enterNext = function () {
+                var _i = 0;
+                $('input[type=text], select', this)
+            .each(function (index) {
+                _i = index;
+                $(this)
+                .addClass('tab' + index)
+                .keydown(function (event) {
+                    if (event.keyCode == 13) {
+                        $('.tab' + (index + 1)).focus();
+                        event.preventDefault();
+                    }
+                });
+
+            })
+                $("input[type=submit]", this).addClass('tab' + (_i + 1));
+            }
+        })(jQuery);
+
+        $('form.element').enterNext();
 
 
 	</script>
