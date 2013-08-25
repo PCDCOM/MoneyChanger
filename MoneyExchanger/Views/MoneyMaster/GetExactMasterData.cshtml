@@ -303,7 +303,7 @@
   
     <script src=@Url.Content("~/Scripts/jquery-1.7.1.js")></script> 
     <script src=@Url.Content("~/Scripts/jquery.printElement.js") type="text/javascript"></script> 
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src=@Url.Content("~/Scripts/jquery-ui.js")></script>
        <script src=@Url.Content("~/Scripts/prettyCheckable.js")></script>
      
  
@@ -314,7 +314,7 @@
         var selectedCurrency = "";
         var selectedVarience = "";
         var lowLimitVarience = "", highLimitVarience = "";
-        var userProfileName = "ARJ";
+        var selectedUser = "ARJ";
         function printElem(options, obj) {
             var strHtml = "<span>" + obj.compDetails.Description + "</span><br />";
             strHtml += "<span>Authorised Moneychanger</span><br />";
@@ -390,11 +390,12 @@
                     $("input:radio[name=usrs]:first").attr('checked', true);
 
                     $('input.prettycheckBox').prettyCheckable();
-                    $('div.clearfix a').on('click', function (e) {
+                    $('#divUsers div.clearfix').on('click', function (e) {
                         // alert("hai");
                         // debugger;
                         // alert($(this).next().text());
-                        userProfileName = $(this).next().text();
+                        selectedUser = $(this).children("label").text();
+                       // alert(selectedUser);
                     });
                     //.closest('.clearfix');
                     //alert(response);
@@ -722,15 +723,32 @@
 
 
             var blnConfirm = true;
-            if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
+            if (selectedCurrency  == "") {
+                alert("Kindly Selecct Currency");
+                blnConfirm = false;
+            }
+            else if ($("#txtRate").val() == "" || parseFloat($("#txtRate").val()) == 0) {
+                 alert("Kindly Enter Rate");
+                blnConfirm = false;
+            }
+            else if ($("#txtReverseRate").val() == "" || parseFloat($("#txtReverseRate").val()) == 0) {
+                 alert("Kindly Enter Reverse Rate");
+                blnConfirm = false;
+            }
+            else if ($("#txtFAmount").val() == "" || parseFloat($("#txtFAmount").val()) == 0) {
+                alert("Kindly Enter Foreign Currency Amount");
+                blnConfirm = false;
+            }
+            else if ($("#txtLAmount").val() == "" || parseFloat($("#txtLAmount").val()) == 0) {
+                alert("Kindly Enter Local Currency Amount");
+                blnConfirm = false;
+            } 
+            else if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
                 blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
                 // alert("low");
             } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
                 blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
                 //alert("hight");
-            } else if ($("#txtFAmount").val() =="" ||  parseFloat($("#txtFAmount").val()) == 0) {
-                 alert("Kindly Enter Foreign Currency");
-                blnConfirm = false;
             } 
             else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val())) {
                 alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
@@ -742,7 +760,7 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
-            selectedUser = $('input:radio:checked').next().text();
+           // selectedUser = $('input:radio:checked').next().text();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -766,7 +784,7 @@
                     populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    alert("error");
+                    alert("Server is busy to Process your Request, please try again later.");
                 }, complete: function () {
 
                 }
@@ -777,15 +795,32 @@
 
         $('#btnPrint').on('click', function () {
             var blnConfirm = true;
-            if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
+            if (selectedCurrency == "") {
+                alert("Kindly Selecct Currency");
+                blnConfirm = false;
+            }
+            else if ($("#txtRate").val() == "" || parseFloat($("#txtRate").val()) == 0) {
+                alert("Kindly Enter Rate");
+                blnConfirm = false;
+            }
+            else if ($("#txtReverseRate").val() == "" || parseFloat($("#txtReverseRate").val()) == 0) {
+                alert("Kindly Enter Reverse Rate");
+                blnConfirm = false;
+            }
+            else if ($("#txtFAmount").val() == "" || parseFloat($("#txtFAmount").val()) == 0) {
+                alert("Kindly Enter Foreign Currency Amount");
+                blnConfirm = false;
+            }
+            else if ($("#txtLAmount").val() == "" || parseFloat($("#txtLAmount").val()) == 0) {
+                alert("Kindly Enter Local Currency Amount");
+                blnConfirm = false;
+            }
+            else if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
                 blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
                 // alert("low");
             } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
                 blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
                 //alert("hight");
-            } else if ($("#txtFAmount").val() == "" || parseFloat($("#txtFAmount").val()) == 0) {
-                alert("Kindly Enter Foreign Currency");
-                blnConfirm = false;
             }
             else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val())) {
                 alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
@@ -796,7 +831,7 @@
             var BuyorSell = "", foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
-            selectedUser = $('input:radio:checked').next().text();
+            //selectedUser = $('input:radio:checked').next().text();
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -816,7 +851,7 @@
                     populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    alert("error");
+                    alert("Server is busy to Process your Request, please try again later.");
                 }, complete: function () {
 
                 }
