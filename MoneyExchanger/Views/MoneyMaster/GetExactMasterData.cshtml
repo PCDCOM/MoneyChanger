@@ -247,7 +247,9 @@
 	<button class="btn btn-redlight hide" type="submit">Stock Report</button>
 	</div>
 	</div>*@
+    <div style="display:none">
     <div id="toPrint"></div>
+    </div>
     <div class="modal fade" id="test_modal">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
@@ -370,7 +372,7 @@
             // $.noConflict(false);*/
             //jq162 = jQuery.noConflict(true);
             $.ajax({
-                url: "MoneyMaster/GetExchangeDate",
+                url: '@Url.Action("GetExchangeDate", "MoneyMaster")',
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR) {
@@ -385,7 +387,7 @@
                             type: 'radio', name: 'usrs', id: this['UserId'], class: "prettycheckBox", "data-label": this['UserId']
                         })); //.html("").after("<label style='padding-right:30px;'>" + this['UserId'] + "</label>"));
                     });
-                     $("input:radio[name=usrs]:first").attr('checked', true);
+                    $("input:radio[name=usrs]:first").attr('checked', true);
 
                     $('input.prettycheckBox').prettyCheckable();
                     $('div.clearfix a').on('click', function (e) {
@@ -560,7 +562,7 @@
                     selectedCurrency = $(this).val().split("-")[0];
                     selectedVarience = $(this).val().split("-")[1];
                     $.ajax({
-                        url: "MoneyMaster/GetExchangeRates?currencyCode=" + selectedCurrency,
+                        url: '@Url.Action("GetExchangeRates", "MoneyMaster")?currencyCode=' + selectedCurrency,
                         type: "get",
                         data: { userName: $(this).val() },
                         success: function (response, textStatus, jqXHR) {
@@ -750,7 +752,7 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
@@ -804,7 +806,7 @@
             }
             var btnHTML = $(this).html();
             $.ajax({
-                url: "MoneyMaster/SaveTransactions?currCode=" + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {

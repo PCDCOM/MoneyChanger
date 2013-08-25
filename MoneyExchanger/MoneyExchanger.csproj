@@ -134,6 +134,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\custom.css" />
     <Content Include="css\docs.css" />
+    <Content Include="css\prettyCheckable.css" />
     <Content Include="css\print.css" />
     <Content Include="css\toggle-switch.css" />
     <Content Include="Global.asax" />
@@ -141,6 +142,11 @@
     <Content Include="image\glyphicons-halflings.png" />
     <Content Include="image\grid-baseline-20px.png" />
     <Content Include="image\mC.png" />
+    <Content Include="image\prettyCheckable-blue.png" />
+    <Content Include="image\prettyCheckable-gray.png" />
+    <Content Include="image\prettyCheckable-green.png" />
+    <Content Include="image\prettyCheckable-red.png" />
+    <Content Include="image\prettyCheckable-yellow.png" />
     <Content Include="Scripts\application.js" />
     <Content Include="Scripts\bootstrap-affix.js" />
     <Content Include="Scripts\bootstrap-alert.js" />
@@ -175,6 +181,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\prettyCheckable.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\combobox.htm" />
     <Content Include="Web.config" />
