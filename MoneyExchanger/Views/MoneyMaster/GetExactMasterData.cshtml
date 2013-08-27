@@ -60,167 +60,133 @@
 
 
 <div class="row-fluid">
-	<div class="plan clearfix navbar-inner">
-                     <div class="navbar">
-        <form class="form-horizontal form-dark">
-        <fieldset>
-          <legend>Currency Transaction</legend>
-           <div class="" style="left: 500px;position: absolute;width: 235px;top: 10px;">
-       
-        <strong id="notificationMessage" style="font-size:20px;color:green"></strong> 
-      </div>
-      <div class="" style="left: 801px;position: absolute;width: 165px;top: 10px;">
-       
-        <strong id="lbldate" style="font-size:20px;">@DateTime.Now.ToString("dd/MM/yyyy")</strong> 
-      </div>
-     
-
-        <div class="MarR25">
-       @* <div class="control-group">
-	<div class="">
-	<button class="btn btn-primary" type="submit" id="btnSave">Save</button>
-    <button class="btn btn-primary" type="submit" id="btnPrint">Save and Print</button>
-    
-	<button class="btn btn-warning" type="submit">Close</button>
-	<button class="btn btn-danger" type="submit" onclick="populateData();">Reset</button>
-	<button class="btn btn-success hide" type="submit">Fix this Rate</button>
-	<button class="btn btn-info hide " type="submit">Clear F5</button>
-	<button class="btn btn-inverse hide" type="submit">Audit Report</button>
-	<button class="btn btn-redlight hide" type="submit">Stock Report</button>
-	</div>
-	</div>*@
-        	
-		  <div class="type">  
-		    <label for="selectError" class="control-label pull-left PadR25"></label>
- <div>		  
-<label id="BS" class="checkbox toggle well span4 " onclick="">
-
-	<input id="view" type="checkbox" checked />
-	<p>
-
-		<span id="spnBuy">Buy</span>
-		<span id="spnSell">Sell</span>
-	</p>
-	
-	<a class="btn btn-greend slide-button"></a>
-</label>
-</div>
-</div>
-<div class="fieldsWrap">
-
-<div class="control-group">
-            <label for="input01" class="control-label">Currency</label>
-            <div class="controls">
-              <select id="combobox">
-   
-  </select>
-            </div>
-          </div>
-          	<div class="control-group" style="visibility:hidden">
-            <label for="input01" class="control-label">EMMA</label>
-            <div class="controls">
-              <input type="text" id="input01" placeholder="Rate" class="input-medium">
-         
-		 </div>
-          </div>
-        
-	
-         
-          <div class="control-group">
-         <label for="txtRate" class="control-label">Rate</label>
-            <div class="controls">
-              <input type="number" id="txtRate"  placeholder="0.00" class="input-medium">
-            </div>
+    <div class="plan clearfix navbar-inner">
+        <div class="navbar">
+            <form class="form-horizontal form-dark">
            
-         
-		 </div>
-          <div class="control-group">
-             <label for="txtReverseRate" class="control-label">Reverse Rate</label>
-            <div class="controls">
-              <input type="number" id="txtReverseRate" placeholder="0.00" class="input-medium">
-            </div>
-          </div>
-		
-
-		<div class="control-group">
-           <label for="txtFAmount" id="lblReceivingCurrency" class="control-label">FC Amount</label>
-            <div class="controls">
-              <input type="number" id="txtFAmount" placeholder="0.00" class="input-medium">
-            </div>
-          </div> 
-		  <div class="control-group">
-
-          <label for="input01" id="lblSellingCurrency" class="control-label">L - Amount</label>
-            <div class="controls">
-              <input type="number" id="txtLAmount" placeholder="0.00" class="input-medium">
-            </div>
-                      
-          </div>
-		  
-		  
-		 
-		</div>
-		</div> 
-		<div class="pull-left Right-side-Area MarL115" >
-
-        
-
-
-		 <div >
-           <label for="input01" class="control-label text-left">Avg Cost</label>
-            <div class="controls">
-              <input type="number" id="txtAvgCost" placeholder="0.00" class="input-medium" disabled=true>
-            </div>
-          </div>
-		  <div class="MarT10">
-            <label for="input01" class="control-label">Stock</label>
-            <div class="controls">
-              <input type="number" id="txtStock" placeholder="0.00" class="input-medium" disabled=true>
-            </div>
-          </div>
-          <div class="MarT10">
-          <label for="input01" class="control-label">User Type</label>
-          <div id="divUsers" class="controls"></div>
-          </div>
-		</div>
-		 <div class=" clearfix  pull-left H150 " >
-		 <div class="R clearfix Map hide" id="Map"   >
-		 <div class="topVal" id="convertToBase">
-		 
-		 </div>
-		 <div class="leftVal" id="locationCurrency">
-		SGD
-		 </div>
-		 <div class="rightVal" id="convertingCurrency">
-		
-		 </div>
-		 <div class="bottomVal" id="convertToCurrency">
-		 
-		 </div>
-		<img src=@Url.Content("~/image/mC.png") class="featurette-image">
-		</div>
-		 
-</div>
-
-        </fieldset>
-</form>
-      </div>
-					</div>
-	</div>
+                <legend>Currency Transaction</legend>
+                <div class="" style="left: 500px; position: absolute; width: 235px; top: 10px;">
+                    <strong id="notificationMessage" style="font-size: 20px; color: green"></strong>
+                </div>
+                <div class="" style="left: 801px; position: absolute; width: 165px; top: 10px;">
+                    <strong id="lbldate" style="font-size: 20px;">@DateTime.Now.ToString("dd/MM/yyyy")</strong>
+                </div>
+                <div class="MarR25">
+ 
+                    <div class="type">
+                        <label for="selectError" class="control-label pull-left PadR25">
+                        </label>
+                        <div>
+                            <label id="BS" class="checkbox toggle well span4 " onclick="">
+                                <input id="view" type="checkbox" checked />
+                                <p>
+                                    <span id="spnBuy">Buy</span> <span id="spnSell">Sell</span>
+                                </p>
+                                <a class="btn btn-greend slide-button"></a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="fieldsWrap">
+                        <div class="control-group">
+                            <label for="input01" class="control-label">
+                                Currency</label>
+                            <div class="controls">
+                                <select id="combobox">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group" style="visibility: hidden">
+                            <label for="input01" class="control-label">
+                                EMMA</label>
+                            <div class="controls">
+                                <input type="text" id="input01" placeholder="Rate" class="input-medium">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="txtFAmount" id="lblReceivingCurrency" class="control-label">
+                                FC Amount</label>
+                            <div class="controls">
+                                <input type="number" id="txtFAmount" placeholder="0.00" class="input-medium">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="txtRate" class="control-label">
+                                Rate</label>
+                            <div class="controls">
+                                <input type="number" id="txtRate" placeholder="0.00" class="input-medium">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="input01" id="lblSellingCurrency" class="control-label">
+                                L - Amount</label>
+                            <div class="controls">
+                                <input type="number" id="txtLAmount" placeholder="0.00" class="input-medium">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="txtReverseRate" class="control-label">
+                                Reverse Rate</label>
+                            <div class="controls">
+                                <input type="number" id="txtReverseRate" placeholder="0.00" class="input-medium">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="input01" class="control-label text-left">
+                            Avg Cost</label>
+                            <div class="controls">
+                            <input type="number" id="txtAvgCost" placeholder="0.00" class="input-medium" disabled="true">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="input01" class="control-label">
+                            Stock</label>
+                            <div class="controls">
+                            <input type="number" id="txtStock" placeholder="0.00" class="input-medium" disabled="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-left Right-side-Area MarL115">
+                    <div class="MarT10">
+                        <label for="input01" class="control-label">
+                            User Type</label>
+                        <div id="divUsers" class="controls">
+                        </div>
+                    </div>
+                </div>
+                <div class=" clearfix  pull-left H150 ">
+                    <div class="R clearfix Map hide" id="Map">
+                        <div class="topVal" id="convertToBase">
+                        </div>
+                        <div class="leftVal" id="locationCurrency">
+                            SGD
+                        </div>
+                        <div class="rightVal" id="convertingCurrency">
+                        </div>
+                        <div class="bottomVal" id="convertToCurrency">
+                        </div>
+                        <img src=@Url.Content("~/image/mC.png") class="featurette-image">
+                    </div>
+                </div>
+            
+            </form>
+        </div>
+    </div>
+    </div>
 
 
 
   <!-- older one -->
-    <div class="" style="position: relative; bottom: 363px; left: 787px; width: 200px;">
+    <div class="" style="position: relative; bottom: 410px; left: 787px; width: 200px;">
         <div class="" style="width: 140px;">
-        <div class"CB" style="padding-bottom:10px">
+        <div class"CB" style="padding-bottom:23px">
             <button class="btn btn-primary" type="submit" id="btnSave" style="width:120px;">
                 Save</button></div>
-          <div style="padding-bottom:10px">  <button class="btn btn-primary" type="submit" id="btnPrint" style="width:120px;">
+          <div style="padding-bottom:23px">  <button class="btn btn-success" type="submit" id="btnPrint" style="width:120px;">
                 Save and Print</button></div> 
-                <div style="padding-bottom:10px">  <button class="btn btn-danger" type="submit" onclick="populateData();" style="width:120px;">
+                <div style="padding-bottom:23px">  <button class="btn btn-danger" type="submit" onclick="populateData();" style="width:120px;">
                 Reset</button></div> 
-           <div style="padding-bottom:10px" > <button class="btn btn-warning" type="submit" style="width:120px;">
+           <div style="padding-bottom:23px" > <button class="btn btn-warning" type="submit" style="width:120px;">
                 Close</button></div>
           
             <button class="btn btn-success hide" type="submit">
@@ -234,19 +200,7 @@
         </div>
     </div>
 	
-	@*<div class="row-fluid ">
-	<div class="plan clearfix navbar-inner MarT10 PadT10 ">
-	<button class="btn btn-primary" type="submit" id="btnSave">Save</button>
-    <button class="btn btn-primary" type="submit" id="btnPrint">Save and Print</button>
-    @*<input type="button" value="Default" id="simplePrint" />
-	<button class="btn btn-warning" type="submit">Close</button>
-	<button class="btn btn-danger" type="submit" onclick="populateData();">Reset</button>
-	<button class="btn btn-success hide" type="submit" >Fix this Rate</button>
-	<button class="btn btn-info hide " type="submit">Clear F5</button>
-	<button class="btn btn-inverse hide" type="submit">Audit Report</button>
-	<button class="btn btn-redlight hide" type="submit">Stock Report</button>
-	</div>
-	</div>*@
+
     <div style="display:none">
     <div id="toPrint"></div>
     </div>
@@ -469,8 +423,6 @@
 
                     $("<a>")
           .attr("tabIndex", -1)
-          .attr("title", "Show All Items")
-          .tooltip()
           .appendTo(this.wrapper)
           .button({
               icons: {
@@ -720,47 +672,7 @@
 
         $('#btnSave').on('click', function () {
 
-
-
-            var blnConfirm = true;
-            if (selectedCurrency  == "") {
-                alert("Kindly Selecct Currency");
-                blnConfirm = false;
-            }
-            else if ($("#txtRate").val() == "" || parseFloat($("#txtRate").val()) == 0) {
-                 alert("Kindly Enter Rate");
-                blnConfirm = false;
-            }
-            else if ($("#txtReverseRate").val() == "" || parseFloat($("#txtReverseRate").val()) == 0) {
-                 alert("Kindly Enter Reverse Rate");
-                blnConfirm = false;
-            }
-            else if ($("#txtFAmount").val() == "" || parseFloat($("#txtFAmount").val()) == 0) {
-                alert("Kindly Enter Foreign Currency Amount");
-                blnConfirm = false;
-            }
-            else if ($("#txtLAmount").val() == "" || parseFloat($("#txtLAmount").val()) == 0) {
-                alert("Kindly Enter Local Currency Amount");
-                blnConfirm = false;
-            } 
-            else if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
-                blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
-                // alert("low");
-            } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
-                blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
-                //alert("hight");
-            } 
-            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val())) {
-                alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
-                blnConfirm = false;
-            }
-            if (!blnConfirm)
-                return;
-
-            var BuyorSell = "", foreignAmount = "", localAmount = "";
-            foreignAmount = $('#txtFAmount').val();
-            localAmount = $('#txtLAmount').val();
-           // selectedUser = $('input:radio:checked').next().text();
+            var BuyorSell = ""
             if (isDefaultBuy == true) {
                 BuyorSell = "B";
 
@@ -768,32 +680,6 @@
                 BuyorSell = "S";
 
             }
-            var btnHTML = $(this).html();
-            $.ajax({
-                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
-                type: "get",
-                data: { userName: "emma" },
-                success: function (response, textStatus, jqXHR, btnHTML) {
-
-                    alert("Saved Succesfully");
-                    populateData();
-
-                },
-                success: function (response, textStatus, jqXHR, btnHTML) {
-                    printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
-                    populateData();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert("Server is busy to Process your Request, please try again later.");
-                }, complete: function () {
-
-                }
-            });
-        });
-
-
-
-        $('#btnPrint').on('click', function () {
             var blnConfirm = true;
             if (selectedCurrency == "") {
                 alert("Kindly Selecct Currency");
@@ -815,30 +701,32 @@
                 alert("Kindly Enter Local Currency Amount");
                 blnConfirm = false;
             }
-            else if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
-                blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
+            else if ($("#txtLAmount").val() == "" || parseFloat($("#txtLAmount").val()) == 0) {
+                alert("Kindly Enter Local Currency Amount");
+                blnConfirm = false;
+            }
+            else if (parseFloat($("#txtLAmount").val()) > 5000) {
+                alert("Local amount should be less than 5000");
+                blnConfirm = false;
                 // alert("low");
             } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
                 blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
                 //alert("hight");
             }
-            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val())) {
+
+            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val()) && BuyorSell == "S") {
                 alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
                 blnConfirm = false;
             }
+
             if (!blnConfirm)
                 return;
-            var BuyorSell = "", foreignAmount = "", localAmount = "";
+
+            var foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
-            //selectedUser = $('input:radio:checked').next().text();
-            if (isDefaultBuy == true) {
-                BuyorSell = "B";
+            // selectedUser = $('input:radio:checked').next().text();
 
-            } else {
-                BuyorSell = "S";
-
-            }
             var btnHTML = $(this).html();
             $.ajax({
                 url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
@@ -846,7 +734,85 @@
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
+                    alert("Saved Succesfully");
+                    populateData();
+
+                },
+                success: function (response, textStatus, jqXHR, btnHTML) {
                     
+                    populateData();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Server is busy to Process your Request, please try again later.");
+                }, complete: function () {
+
+                }
+            });
+        });
+
+
+
+        $('#btnPrint').on('click', function () {
+            var BuyorSell = "";
+            if (isDefaultBuy == true) {
+                BuyorSell = "B";
+
+            } else {
+                BuyorSell = "S";
+
+            }
+            var blnConfirm = true;
+            if (selectedCurrency == "") {
+                alert("Kindly Selecct Currency");
+                blnConfirm = false;
+            }
+            else if ($("#txtRate").val() == "" || parseFloat($("#txtRate").val()) == 0) {
+                alert("Kindly Enter Rate");
+                blnConfirm = false;
+            }
+            else if ($("#txtReverseRate").val() == "" || parseFloat($("#txtReverseRate").val()) == 0) {
+                alert("Kindly Enter Reverse Rate");
+                blnConfirm = false;
+            }
+            else if ($("#txtFAmount").val() == "" || parseFloat($("#txtFAmount").val()) == 0) {
+                alert("Kindly Enter Foreign Currency Amount");
+                blnConfirm = false;
+            }
+            else if ($("#txtLAmount").val() == "" || parseFloat($("#txtLAmount").val()) == 0) {
+                alert("Kindly Enter Local Currency Amount");
+                blnConfirm = false;
+            } else if (parseFloat($("#txtLAmount").val()) > 5000) {
+                alert("Local amount should be less than 5000");
+                blnConfirm = false;
+                // alert("low");
+            }
+            else if (parseFloat($("#txtRate").val()) < lowLimitVarience) {
+                blnConfirm = confirm("Rate Entered is lesser than the Lower Limit Varience");
+                // alert("low");
+            } else if (parseFloat($("#txtRate").val()) > highLimitVarience) {
+                blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
+                //alert("hight");
+            }
+            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val()) && BuyorSell =="S") {
+                alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
+                blnConfirm = false;
+            }
+            
+            if (!blnConfirm)
+                return;
+            var foreignAmount = "", localAmount = "";
+            foreignAmount = $('#txtFAmount').val();
+            localAmount = $('#txtLAmount').val();
+            //selectedUser = $('input:radio:checked').next().text();
+
+            var btnHTML = $(this).html();
+            $.ajax({
+                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                type: "get",
+                data: { userName: "emma" },
+                success: function (response, textStatus, jqXHR, btnHTML) {
+
+
                     printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
                     populateData();
                 },
