@@ -184,7 +184,7 @@
                 Save</button></div>
           <div style="padding-bottom:23px">  <button class="btn btn-success" type="submit" id="btnPrint" style="width:120px;">
                 Save and Print</button></div> 
-                <div style="padding-bottom:23px">  <button class="btn btn-danger" type="submit" onclick="populateData();" style="width:120px;">
+                <div style="padding-bottom:23px">  <button class="btn btn-danger" type="submit" onclick="ResetData();" style="width:120px;">
                 Reset</button></div> 
            <div style="padding-bottom:23px" > <button class="btn btn-warning" type="submit" style="width:120px;">
                 Close</button></div>
@@ -331,11 +331,11 @@
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR) {
                     // $('#txtExchngRate').val(response.exchangeRate);
-
+                    //$('#combobox').append($("<option selected='selected'></option>").val("defaultValue").html("---Select---"));
                     $.each(response.varCurr, function () {
                         $('#combobox').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Code'] + "-" + this['Description']));
                     });
-
+                  //  $('#combobox').val("defaultValue");
                     $.each(response.varUsers, function () {
                         $('#divUsers').append($("<input>").attr({
                             type: 'radio', name: 'usrs', id: this['UserId'], class: "prettycheckBox", "data-label": this['UserId']
@@ -349,7 +349,7 @@
                         // debugger;
                         // alert($(this).next().text());
                         selectedUser = $(this).children("label").text();
-                       // alert(selectedUser);
+                        // alert(selectedUser);
                     });
                     //.closest('.clearfix');
                     //alert(response);
@@ -505,13 +505,14 @@
             });
         })(jQuery);
 
+       // $('#combobox').val("defaultValue");
 
         $(function () {
             $("#combobox").combobox({
                 "option": { "style": "width:100px" },
                 select: function (event, ui) {
                     // alert("akka");
-
+                    
                     selectedCurrency = $(this).val().split("-")[0];
                     selectedVarience = $(this).val().split("-")[1];
                     $.ajax({
@@ -544,8 +545,7 @@
             });
 
         });
-
-
+       
         $('#txtFAmount').on('blur', function () {
             if ($(this).val() != "")
                 $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtRate").val())).toFixed(2));
@@ -738,10 +738,7 @@
                     populateData();
 
                 },
-                success: function (response, textStatus, jqXHR, btnHTML) {
-                    
-                    populateData();
-                },
+               
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("Server is busy to Process your Request, please try again later.");
                 }, complete: function () {
@@ -823,7 +820,19 @@
                 }
             });
         });
+        function ResetData() {
+            $('#txtFAmount').val("");
+            $('#txtLAmount').val("");
+            $("#txtAvgCost").val("");
+            $("#txtStock").val("");
+            $("#txtRate").val("");
+            $("#txtReverseRate").val("");
+            $('#Map').hide();
+            $("#notificationMessage").html("");
+            $('span.custom-combobox .custom-combobox-input').val(''); // populateData();
+            selectedCurrency = "";
 
+        }
 
         function populateData() {
             //$('#test_modal').dialog('open');
