@@ -15,7 +15,7 @@
     <link href=@Url.Content("~/css/bootstrap-responsive.css") rel="stylesheet"/>
 	<link href=@Url.Content("~/css/toggle-switch.css") rel="stylesheet"/>
 	<link href=@Url.Content("~/css/custom.css") rel="stylesheet"/>
-    <link href=@Url.Content("~/css/print.css") rel="stylesheet"/>
+    
     <link href=@Url.Content("~/css/prettyCheckable.css") rel="stylesheet"/>
 
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
@@ -33,7 +33,7 @@
     <link rel="shortcut icon" href="../assets/ico/favicon.png">
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-         <style>
+         <style type="text/css">
               .custom-combobox {
                 position: relative;
                 display: inline-block;
@@ -202,8 +202,7 @@
 	
 
     <div style="display:none">
-    <div id="toPrint"></div>
-    </div>
+    
     <div class="modal fade" id="test_modal">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
@@ -255,22 +254,28 @@
    
     
   
-    <script src=@Url.Content("~/Scripts/jquery-1.7.1.js")></script> 
-    <script src=@Url.Content("~/Scripts/jquery.printElement.js") type="text/javascript"></script> 
-    <script src=@Url.Content("~/Scripts/jquery-ui.js")></script>
-       <script src=@Url.Content("~/Scripts/prettyCheckable.js")></script>
+    <script type="text/javascript" src=@Url.Content("~/Scripts/jquery-1.7.1.js")></script> 
+    
+    <script type="text/javascript" src=@Url.Content("~/Scripts/jquery-ui.js")></script>
+       <script type="text/javascript" src=@Url.Content("~/Scripts/prettyCheckable.js")></script>
      
  
    
-    <script>
+    <script type="text/javascript">
         var isDefaultBuy = true;
         var currencyConvResponse = null;
         var selectedCurrency = "";
         var selectedVarience = "";
         var lowLimitVarience = "", highLimitVarience = "";
         var selectedUser = "ARJ";
+        
         function printElem(options, obj) {
-            var strHtml = "<span>" + obj.compDetails.Description + "</span><br />";
+            var strHtml = "<html>";
+            strHtml += "<header>";
+            
+            strHtml += "</header>";
+            strHtml += "<body style='padding:3px;margin:0px;font-size:11px;width:230px;height:300px;' onload='window.opener.close();'>";
+            strHtml += "<span>" + obj.compDetails.Description + "</span><br />";
             strHtml += "<span>Authorised Moneychanger</span><br />";
             strHtml += "<span>" + obj.compDetails.Address1 + "</span><br />";
             strHtml += "<span>" + obj.compDetails.Address2 + "</span><br />";
@@ -281,33 +286,39 @@
             strHtml += "<span class='spnBold'>Receipt Number:  " + obj.ret[0].TranNo + "</span>";
             strHtml += "<span style='padding-left:45px;'>" + $("#lbldate").html() + "</span>";
 
-            strHtml += "<hr />";
+            strHtml += "<hr style='border-top:none;border-bottom:dotted;'/>";
             strHtml += "<span>Cash Customer</span><br />";
-            strHtml += "<table><tr>";
-            strHtml += "<th align='left' width='10%'>" + obj.AdditionaValues.currCode + "</th>";
+            strHtml += "<table style='width:88%;'><tr>";
+            strHtml += "<th style='font-weight:bold;border:1px dotted black;padding:1px;' align='left' width='10%'>" + obj.AdditionaValues.currCode + "</th>";
             if (obj.AdditionaValues.transactionType == "B")
-                strHtml += "<th align='left' width='10%'>Buy</th>";
+                strHtml += "<th style='border:1px dotted black;padding:1px;'   align='left' width='10%'>Buy</th>";
             else
-                strHtml += "<th align='left' width='10%'>Sell</th>";
-            strHtml += "<th align='right' width='30%'> Rate:" + obj.AdditionaValues.Rate + "</th>";
+                strHtml += "<th style='border:1px dotted black;padding:1px;'   align='left' width='10%'>Sell</th>";
+            strHtml += "<th style='border:1px dotted black;padding:1px;'   align='right' width='30%'> " + obj.AdditionaValues.Rate + "</th>";
             strHtml += "</tr></table><br/>";
-            strHtml += "<table><tr>";
-            strHtml += "<th align='right' width='60%'>FC Amt</th>";
-            strHtml += "<th align='right' width='40%'>LC Amt</th></tr>";
+            strHtml += "<table style='width:88%;'><tr>";
+            strHtml += "<th style='border:1px dotted black;padding:1px;' align='right' width='60%'>FC Amt</th>";
+            strHtml += "<th style='border:1px dotted black;padding:1px;' align='right' width='40%'>LC Amt</th></tr>";
 
-            strHtml += "<tr><td align='right'>" + obj.AdditionaValues.ForeignAmount + "</td>";
-            strHtml += "<td align='right'>" + obj.AdditionaValues.LocalAmount + "</td>";
+            strHtml += "<tr><td style='border:1px dotted black;padding:1px;' align='right'>" + obj.AdditionaValues.ForeignAmount + "</td>";
+            strHtml += "<td style='border:1px dotted black;padding:1px;' align='right'>" + obj.AdditionaValues.LocalAmount + "</td>";
 
             strHtml += "</tr></table>";
             strHtml += "<br />";
 
-            strHtml += "<span class='spnBold'>Please Pay: </span><span class='spnBold'>" + obj.AdditionaValues.LocalAmount + "</span><br />";
+            strHtml += "<span style='font-weight:bold;'>Please Pay: </span><span style='font-weight:bold;'>" + obj.AdditionaValues.LocalAmount + "</span><br />";
 
-            strHtml += "<hr />";
-            strHtml += "<span class='info'>Pls. Count $ check notes before leaving the counter as we shall not entertain any complaints thereafter. Thank you.</span><br />";
-            strHtml += "<hr />";
-            $('#toPrint').html(strHtml);
-            $('#toPrint').printElement(options);
+            strHtml += "<hr style='border-top:none;border-bottom:dotted;'/>";
+            strHtml += "<span style='font-size:10px;'>Pls. Count $ check notes before leaving the counter as we shall not entertain any complaints thereafter. Thank you.</span><br />";
+            strHtml += "<hr style='border-top:none;border-bottom:dotted;'/>";
+
+            strHtml += "</body>";
+            strHtml += "</html>";
+            var WindowObject = window.open('', 'PrintWindow', 'width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes');
+            WindowObject.document.writeln(strHtml);
+            WindowObject.document.close();
+            WindowObject.focus();
+            WindowObject.print();
 
 
         }
@@ -335,7 +346,7 @@
                     $.each(response.varCurr, function () {
                         $('#combobox').append($("<option></option>").val(this['Code'] + "-" + this['Varience']).html(this['Code'] + "-" + this['Description']));
                     });
-                  //  $('#combobox').val("defaultValue");
+                    //  $('#combobox').val("defaultValue");
                     $.each(response.varUsers, function () {
                         $('#divUsers').append($("<input>").attr({
                             type: 'radio', name: 'usrs', id: this['UserId'], class: "prettycheckBox", "data-label": this['UserId']
@@ -505,14 +516,14 @@
             });
         })(jQuery);
 
-       // $('#combobox').val("defaultValue");
+        // $('#combobox').val("defaultValue");
 
         $(function () {
             $("#combobox").combobox({
                 "option": { "style": "width:100px" },
                 select: function (event, ui) {
                     // alert("akka");
-                    
+
                     selectedCurrency = $(this).val().split("-")[0];
                     selectedVarience = $(this).val().split("-")[1];
                     $.ajax({
@@ -545,19 +556,19 @@
             });
 
         });
-       
+
         $('#txtFAmount').on('blur', function () {
             if ($(this).val() != "")
                 $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtRate").val())).toFixed(2));
 
         });
         $('#txtRate').on('keydown', function (event) {
-                    if (event.keyCode == 13) {
-                        //$('.tab' + (index + 1)).focus();
-                        $('#txtFAmount').focus();
-                        event.preventDefault();
-                        }
-                });
+            if (event.keyCode == 13) {
+                //$('.tab' + (index + 1)).focus();
+                $('#txtFAmount').focus();
+                event.preventDefault();
+            }
+        });
         $('#txtReverseRate').on('keydown', function (event) {
             if (event.keyCode == 13) {
                 //$('.tab' + (index + 1)).focus();
@@ -588,7 +599,7 @@
             if ($(this).val() != "") {
                 $('#txtReverseRate').val(parseFloat(1 / $(this).val()).toFixed(8));
                 if ($("#txtFAmount").val() != "")
-                $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
+                    $('#txtLAmount').val(parseFloat(parseFloat($(this).val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
             }
 
             if (isDefaultBuy == true) {
@@ -611,7 +622,7 @@
             if ($(this).val() != "")
                 $('#txtRate').val(parseFloat(parseFloat(1 / $(this).val()).toFixed(8)).toString());
             if ($("#txtFAmount").val() != "")
-            $('#txtLAmount').val(parseFloat(parseFloat($("#txtRate").val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
+                $('#txtLAmount').val(parseFloat(parseFloat($("#txtRate").val()) * parseFloat($("#txtFAmount").val())).toFixed(2));
 
             if (isDefaultBuy == true) {
 
@@ -738,7 +749,7 @@
                     populateData();
 
                 },
-               
+
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("Server is busy to Process your Request, please try again later.");
                 }, complete: function () {
@@ -790,11 +801,11 @@
                 blnConfirm = confirm("Rate Entered is higher than the Higher Limit Varience");
                 //alert("hight");
             }
-            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val()) && BuyorSell =="S") {
+            else if (parseFloat($("#txtFAmount").val()) > parseFloat($("#txtStock").val()) && BuyorSell == "S") {
                 alert("Foreign Amount exceeds the Stock limit, kindly enter lesser amount than the stock");
                 blnConfirm = false;
             }
-            
+
             if (!blnConfirm)
                 return;
             var foreignAmount = "", localAmount = "";
@@ -811,7 +822,7 @@
 
 
                     printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
-                    populateData();
+                    //populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("Server is busy to Process your Request, please try again later.");
