@@ -134,14 +134,14 @@
                             <label for="input01" class="control-label text-left">
                             Avg Cost</label>
                             <div class="controls">
-                            <input type="number" id="txtAvgCost" placeholder="0.00" class="input-medium" disabled="true">
+                            <input type="number" id="txtAvgCost" style="font-weight:bold;background-color:White;" placeholder="0.00" class="input-medium" disabled="true">
                             </div>
                         </div>
                         <div class="control-group">
                             <label for="input01" class="control-label">
                             Stock</label>
                             <div class="controls">
-                            <input type="number" id="txtStock" placeholder="0.00" class="input-medium" disabled="true">
+                            <input type="number" id="txtStock" placeholder="0.00" style="font-weight:bold;background-color:White;"  class="input-medium" disabled="true">
                             </div>
                         </div>
                     </div>
@@ -305,8 +305,10 @@
 
             strHtml += "</tr></table>";
             strHtml += "<br />";
-
-            strHtml += "<span style='font-weight:bold;'>Please Pay: </span><span style='font-weight:bold;'>" + obj.AdditionaValues.LocalAmount + "</span><br />";
+            if (obj.AdditionaValues.transactionType == "B")
+                strHtml += "<span style='font-weight:bold;'>Please Pay: </span><span style='font-weight:bold;'>" + obj.AdditionaValues.LocalAmount + "</span><br />";
+            else
+                strHtml += "<span style='font-weight:bold;'>Please Collect: </span><span style='font-weight:bold;'>" + obj.AdditionaValues.LocalAmount + "</span><br />";
 
             strHtml += "<hr style='border-top:none;border-bottom:dotted;'/>";
             strHtml += "<span style='font-size:10px;'>Pls. Count $ check notes before leaving the counter as we shall not entertain any complaints thereafter. Thank you.</span><br />";
@@ -736,6 +738,10 @@
             var foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
+
+            //Foreign amount round off
+            foreignAmount = Math.round((foreignAmount * 100) + 0.5) / 100;
+            $("#txtFAmount").val() = foreignAmount;
             // selectedUser = $('input:radio:checked').next().text();
 
             var btnHTML = $(this).html();
@@ -811,6 +817,11 @@
             var foreignAmount = "", localAmount = "";
             foreignAmount = $('#txtFAmount').val();
             localAmount = $('#txtLAmount').val();
+
+            //Foreign amount round off
+            foreignAmount = Math.round((foreignAmount * 100) + 0.5) / 100;
+            $("#txtFAmount").val() = foreignAmount;
+
             //selectedUser = $('input:radio:checked').next().text();
 
             var btnHTML = $(this).html();
@@ -822,7 +833,7 @@
 
 
                     printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
-                    //populateData();
+                    populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("Server is busy to Process your Request, please try again later.");
