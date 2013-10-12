@@ -62,7 +62,10 @@ namespace MoneyExchanger.Controllers
 
         public ActionResult GetExactMasterData()
         {
-
+            //if (Check.getValue() != "00E0B406E1ECBFEBFBFF000106CAWKXY Technology inc.Base BoardTo be filled by O.E.M.")
+            //{
+            //    return View("ErrorView");
+            //}
 
             return View();
         }
@@ -74,14 +77,49 @@ namespace MoneyExchanger.Controllers
 
             return Json(convertionList, JsonRequestBehavior.AllowGet); ;
         }
-        public ActionResult SaveTransactions(string currCode, string userId, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock)
+        public ActionResult SaveTransactions(string currCode, string userId, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock, int print)
         {
             LinqMasterDataContext mastContext = new LinqMasterDataContext();
-            var ret = mastContext.SaveTransaction(userId, currCode, transactionType, Convert.ToDecimal(Rate), Convert.ToDecimal(ForeignAmount), Convert.ToDecimal(LocalAmount), Convert.ToDecimal(AvgCost), Convert.ToDouble(AvgStock));
+            System.Data.Linq.ISingleResult<SaveTransactionResult> ret = mastContext.SaveTransaction(userId, currCode, transactionType, Convert.ToDecimal(Rate), Convert.ToDecimal(ForeignAmount), Convert.ToDecimal(LocalAmount), Convert.ToDecimal(AvgCost), Convert.ToDouble(AvgStock));
+            decimal TranNo = 0;
+            TranNo = ret.First<SaveTransactionResult>().TranNo;
+            //if (ret != null && ret.Any())
+            //{
+            //    foreach (var item in ret)
+            //    {
+            //        TranNo = item.TranNo;
+            //    }
+                
+            //}
             var compDetails = mastContext.tblCompanies.FirstOrDefault();
             var AdditionaValues = new { currCode = currCode, transactionType = transactionType, ForeignAmount = ForeignAmount, LocalAmount = LocalAmount, Rate = Rate };
-            return Json(new { ret, compDetails, AdditionaValues }, JsonRequestBehavior.AllowGet);
-        }
+            if (print == 1) {
+                PrintReceipt(TranNo, currCode, userId, transactionType, Rate, ForeignAmount, LocalAmount, AvgCost);
+            }
 
+            return Json(new {compDetails, AdditionaValues }, JsonRequestBehavior.AllowGet);
+        }
+        public void PrintReceipt(decimal TranNo, string currCode, string userId, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost)
+        {
+            LinqMasterDataContext mastContext = new LinqMasterDataContext();
+            PrintTransaction rcpt = new PrintTransaction();
+            var compDetails = mastContext.tblCompanies.FirstOrDefault();
+            //var AdditionaValues = new { currCode = currCode, transactionType = transactionType, ForeignAmount = ForeignAmount, LocalAmount = LocalAmount, Rate = Rate };
+            rcpt.Description = compDetails.Description;
+            rcpt.Address1 = compDetails.Address1;
+            rcpt.Address2 = compDetails.Address2;
+            rcpt.Address3 = compDetails.Address3;
+            rcpt.Phone = compDetails.Phone;
+            rcpt.TranNo = TranNo.ToString();
+            rcpt.CurCode = currCode;
+            rcpt.TranType = transactionType;
+            rcpt.TaxRef = compDetails.TaxRef;
+            rcpt.ForeignAmt = ForeignAmount;
+            rcpt.LocalAmt = LocalAmount;
+            rcpt.Rate = Rate;
+            rcpt.print();
+            
+
+        }
     }
 }

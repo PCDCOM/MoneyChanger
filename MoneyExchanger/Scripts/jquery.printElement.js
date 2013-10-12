@@ -50,12 +50,12 @@
         * 3 : array of strings with paths to alternate css files (optimized for print)
         */
         "printBodyOptions": {
-            "styleToAdd": 'padding:3px;margin:0px;font-size:12px;width:300px;', //style attributes to add to the body of print document
+            "styleToAdd": 'padding:3px;margin:0px;font-size:12px;width:300px;height:300px;', //style attributes to add to the body of print document
             "classNameToAdd": '' //css class to add to the body of print document
         },
         "leaveOpen": false, // in case of popup, leave the print page open or not
         "iframeElementOptions": {
-            "styleToAdd": 'border:none;position:absolute;width:0px;height:0px;bottom:0px;left:0px;', //style attributes to add to the iframe element
+            "styleToAdd": 'border:none;position:absolute;width:0px;height:10px;bottom:0px;left:0px;', //style attributes to add to the iframe element
             "classNameToAdd": '' //css class to add to the iframe element
         }
     };

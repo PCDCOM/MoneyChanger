@@ -741,12 +741,12 @@
 
             //Foreign amount round off
             foreignAmount = Math.round((foreignAmount * 100) + 0.5) / 100;
-            $("#txtFAmount").val() = foreignAmount;
+            $("#txtFAmount").val(foreignAmount);
             // selectedUser = $('input:radio:checked').next().text();
 
             var btnHTML = $(this).html();
             $.ajax({
-                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val() + "&print=0",
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
@@ -820,19 +820,19 @@
 
             //Foreign amount round off
             foreignAmount = Math.round((foreignAmount * 100) + 0.5) / 100;
-            $("#txtFAmount").val() = foreignAmount;
+            $("#txtFAmount").val(foreignAmount);
 
             //selectedUser = $('input:radio:checked').next().text();
 
             var btnHTML = $(this).html();
             $.ajax({
-                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val(),
+                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val() + "&print=1",
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
 
-                    printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
+                    //printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
                     populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

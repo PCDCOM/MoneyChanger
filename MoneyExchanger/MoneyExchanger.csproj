@@ -123,6 +123,7 @@
       <DependentUpon>LinqMaster.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\MoneyExchangeAttribute.cs" />
+    <Compile Include="PrintTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +186,9 @@
     <Content Include="Scripts\prettyCheckable.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\combobox.htm" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -228,6 +231,7 @@
     </None>
     <None Include="Scripts\README.md" />
     <Content Include="Views\MoneyMaster\GetBoardDisplay.cshtml" />
+    <Content Include="Views\MoneyMaster\ErrorView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
