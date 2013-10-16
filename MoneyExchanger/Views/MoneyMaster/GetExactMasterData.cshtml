@@ -18,7 +18,7 @@
     
     <link href=@Url.Content("~/css/prettyCheckable.css") rel="stylesheet"/>
 
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href=@Url.Content("~/css/jquery-ui.css")/>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -53,7 +53,12 @@
                 padding: 0.3em;
               }
         </style>
+        <script type="text/javascript">
+       
+            var blnServerPrintorLocal = @ViewBag.blnServerPrinter;
 
+        
+        </script>
 </head>
 <body>
 
@@ -268,7 +273,7 @@
         var selectedVarience = "";
         var lowLimitVarience = "", highLimitVarience = "";
         var selectedUser = "ARJ";
-        
+      //  var blnServerPrintorLocal =@ViewBag.Title;
         function printElem(options, obj) {
             var strHtml = "<html>";
             strHtml += "<header>";
@@ -283,7 +288,7 @@
             strHtml += "<span>" + obj.compDetails.Postalcode + "</span><br />";
             strHtml += "<span>Tel: " + obj.compDetails.Phone + "</span><br />";
             strHtml += "<span>LIC No: " + obj.compDetails.TaxRef + "</span><br />";
-            strHtml += "<span class='spnBold'>Receipt Number:  " + obj.ret[0].TranNo + "</span>";
+            strHtml += "<span class='spnBold'>Receipt Number:  " + obj.AdditionaValues.TranNo + "</span>";
             strHtml += "<span style='padding-left:45px;'>" + $("#lbldate").html() + "</span>";
 
             strHtml += "<hr style='border-top:none;border-bottom:dotted;'/>";
@@ -751,7 +756,7 @@
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
 
-                    alert("Saved Succesfully");
+                    alert("Transaction Saved Succesfully");
                     populateData();
 
                 },
@@ -826,13 +831,15 @@
 
             var btnHTML = $(this).html();
             $.ajax({
-                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val() + "&print=1",
+                url: '@Url.Action("SaveTransactions", "MoneyMaster")?currCode=' + selectedCurrency + "&userId=" + selectedUser + "&transactionType=" + BuyorSell + "&Rate=" + $("#txtRate").val() + "&ForeignAmount=" + foreignAmount + "&LocalAmount=" + localAmount + "&AvgCost=" + $("#txtAvgCost").val() + "&AvgStock=" + $("#txtStock").val() + "&print=" + blnServerPrintorLocal,
                 type: "get",
                 data: { userName: "emma" },
                 success: function (response, textStatus, jqXHR, btnHTML) {
-
-
-                    //printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
+                    
+                    if (blnServerPrintorLocal != true)
+                        printElem({ "overrideElementCSS": ["/css/print.css"] }, response);
+                    else
+                        alert("Transaction Saved Successfully, please collect the receipt");
                     populateData();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

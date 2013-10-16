@@ -16,6 +16,7 @@ namespace MoneyExchanger.Controllers
         public ActionResult GetMasterData()
         {
             ViewBag.Title = "Money Exchanger";
+            ViewBag.blnServerPrinter = System.Configuration.ConfigurationManager.AppSettings["blnServerPrinter"].ToString();
             MoneyExchangeAttribute objMonExchng = new MoneyExchangeAttribute();
             Random rnd = new Random(0);
             objMonExchng.VoucherID = rnd.Next().ToString();
@@ -66,7 +67,7 @@ namespace MoneyExchanger.Controllers
             //{
             //    return View("ErrorView");
             //}
-
+            ViewBag.blnServerPrinter = System.Configuration.ConfigurationManager.AppSettings["blnServerPrinter"].ToString();
             return View();
         }
         public ActionResult GetExchangeRates(string currencyCode)
@@ -77,7 +78,7 @@ namespace MoneyExchanger.Controllers
 
             return Json(convertionList, JsonRequestBehavior.AllowGet); ;
         }
-        public ActionResult SaveTransactions(string currCode, string userId, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock, int print)
+        public ActionResult SaveTransactions(string currCode, string userId, string transactionType, string Rate, string ForeignAmount, string LocalAmount, string AvgCost, string AvgStock, string print)
         {
             LinqMasterDataContext mastContext = new LinqMasterDataContext();
             System.Data.Linq.ISingleResult<SaveTransactionResult> ret = mastContext.SaveTransaction(userId, currCode, transactionType, Convert.ToDecimal(Rate), Convert.ToDecimal(ForeignAmount), Convert.ToDecimal(LocalAmount), Convert.ToDecimal(AvgCost), Convert.ToDouble(AvgStock));
@@ -92,8 +93,8 @@ namespace MoneyExchanger.Controllers
                 
             //}
             var compDetails = mastContext.tblCompanies.FirstOrDefault();
-            var AdditionaValues = new { currCode = currCode, transactionType = transactionType, ForeignAmount = ForeignAmount, LocalAmount = LocalAmount, Rate = Rate };
-            if (print == 1) {
+            var AdditionaValues = new { currCode = currCode, transactionType = transactionType, ForeignAmount = ForeignAmount, LocalAmount = LocalAmount, Rate = Rate, TranNo = TranNo };
+            if (print == "true") {
                 PrintReceipt(TranNo, currCode, userId, transactionType, Rate, ForeignAmount, LocalAmount, AvgCost);
             }
 
